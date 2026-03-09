@@ -1,0 +1,19 @@
+/* Default light mode */
+:root {
+    --main-bg: #F8FAFC;
+    --card-bg: white;
+    --card-border: #E2E8F0;
+    --text-main: #1E1B4B;
+    --text-sub: #636E81;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --main-bg: #020617;
+        --card-bg: #0B1120;
+        --card-border: #1E293B;
+        --text-main: #F8FAFC;
+        --text-sub: #94A3B8;
+    }
+}
