@@ -47,20 +47,6 @@
     width: 24px;
 }
 
-@media (min-width: 480px) {
-    .nav-bar svg {
-        width: 24px;
-        height: 24px;
-    }
-}
-
-@media (min-width: 768px) {
-    .nav-bar svg {
-        width: 25px;
-        height: 25px;
-    }
-}
-
 .nav-bar svg path {
     color: var(--primary-btn-bg);
     fill: currentColor;

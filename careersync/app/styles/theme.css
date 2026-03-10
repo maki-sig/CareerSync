@@ -20,7 +20,7 @@
     --primary-active-border: #4F46E5;
     --primary-active-txt: #312E81;
 
-    /* danager button */
+    /* danger button */
     --danger-btn-bg: #FFF1F2;
     --danger-btn-border: #FB7185;
     --danger-btn-txt: #BE123C;
@@ -32,6 +32,36 @@
     --danger-active-bg: #FECDD3;
     --danger-active-border: #E11D48;
     --danger-active-txt: #4C0519;
+
+    /* selection radio */
+    --select-bg: #FFFFFF;
+    --select-border: #E2E8F0;
+    --select-txt: #636E81;
+
+    --select-hover-bg: #F8FAFC;
+    --select-hover-border: #CBD5E1;
+    --select-hover-txt: #475569;
+
+    --selected-bg: #EEF2FF;
+    --selected-border: #6366F1;
+    --selected-txt: #4338CA;
+
+    --selected-hover-bg: #E0E7FF;
+    --selected-hover-border: #4F46E5;
+    --selected-hover-txt: #3730A3;
+
+    /* secondary button */
+    --secondary-bg: #F8FAFC;
+    --secondary-border: #CBD5E1;
+    --secondary-txt: #475569;
+
+    --secondary-hover-bg: #F1F5F9;
+    --secondary-hover-border: #94A3B8;
+    --secondary-hover-txt: #1E293B;
+
+    --secondary-active-bg: #E2E8F0;
+    --secondary-active-border: #64748B;
+    --secondary-active-txt: #0F172A;
 
     /* theme toggle */
     --toggle-bg: #E2E8F0;
@@ -71,6 +101,36 @@
     --danger-active-border: #E11D48;
     --danger-active-txt: #FDA4AF;
 
+    /* selection radio */
+    --select-bg: #0B1120;
+    --select-border: #1E293B;
+    --select-txt: #94A3B8;
+
+    --select-hover-bg: #0F172A;
+    --select-hover-border: #334155;
+    --select-hover-txt: #F1F5F9;
+
+    --selected-bg: #1E1B4B;
+    --selected-border: #6366F1;
+    --selected-txt: #FFFFFF;
+
+    --selected-hover-bg: #312E81;
+    --selected-hover-border: #818CF8;
+    --selected-hover-txt: #FFFFFF;
+    
+    /* secondary button */
+    --secondary-bg: #0F172A;
+    --secondary-border: #334155;
+    --secondary-txt: #94A3B8;
+
+    --secondary-hover-bg: #1E293B;
+    --secondary-hover-border: #475569;
+    --secondary-hover-txt: #F1F5F9;
+
+    --secondary-active-bg: #020617;
+    --secondary-active-border: #1E293B;
+    --secondary-active-txt: #64748B;
+
     /* theme toggle */
     --toggle-bg: #1E293B;
 }
@@ -96,6 +156,50 @@
         --primary-active-border: #4F46E5;
         --primary-active-txt: #C7D2FE;
 
+         /* danger button */
+        --danger-btn-bg: #450A0A;
+        --danger-btn-border: #F43F5E;
+        --danger-btn-txt: #FECDD3;
+
+        --danger-hover-bg: #7F1D1D;
+        --danger-hover-border: #FB7185;
+        --danger-hover-txt: #FFFFFF;
+
+        --danger-active-bg: #450A0A;
+        --danger-active-border: #E11D48;
+        --danger-active-txt: #FDA4AF;
+
+        /* selection radio */
+        --select-bg: #0B1120;
+        --select-border: #1E293B;
+        --select-txt: #94A3B8;
+
+        --select-hover-bg: #0F172A;
+        --select-hover-border: #334155;
+        --select-hover-txt: #F1F5F9;
+
+        --selected-bg: #1E1B4B;
+        --selected-border: #6366F1;
+        --selected-txt: #FFFFFF;
+
+        --selected-hover-bg: #312E81;
+        --selected-hover-border: #818CF8;
+        --selected-hover-txt: #FFFFFF;
+
+        /* secondary button */
+        --secondary-bg: #0F172A;
+        --secondary-border: #334155;
+        --secondary-txt: #94A3B8;
+
+        --secondary-hover-bg: #1E293B;
+        --secondary-hover-border: #475569;
+        --secondary-hover-txt: #F1F5F9;
+
+        --secondary-active-bg: #020617;
+        --secondary-active-border: #1E293B;
+        --secondary-active-txt: #64748B;
+
+        /* theme toggle */
         --toggle-bg: #1E293B;
     }
 }
