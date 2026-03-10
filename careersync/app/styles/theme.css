@@ -1,47 +1,75 @@
 /* Default light mode */
-:root {
+:root,
+[data-theme="light"] {
     --main-bg: #F8FAFC;
     --card-bg: white;
     --card-border: #E2E8F0;
     --text-main: #1E1B4B;
     --text-sub: #636E81;
 
-    /* interactives */
-        /* primary button */
-        --primary-btn-bg: #EEF2FF;
-        --primary-btn-border: #818CF8;
-        --primary-btn-txt: #4338CA;
+    /* primary button */
+    --primary-btn-bg: #EEF2FF;
+    --primary-btn-border: #818CF8;
+    --primary-btn-txt: #4338CA;
 
-        --primary-hover-bg: #E0E7FF;
-        --primary-hover-border: #6366F1;
-        --primary-hover-txt: #3730A3;
+    --primary-hover-bg: #E0E7FF;
+    --primary-hover-border: #6366F1;
+    --primary-hover-txt: #3730A3;
 
-        --primary-active-bg: #C7D2FE;
-        --primary-active-border: #4F46E5;
-        --primary-active-txt: #312E81;
+    --primary-active-bg: #C7D2FE;
+    --primary-active-border: #4F46E5;
+    --primary-active-txt: #312E81;
+
+    /* theme toggle */
+    --toggle-bg: #E2E8F0;
 }
 
-/* Dark mode */
+/* Dark mode — manual toggle */
+[data-theme="dark"] {
+    --main-bg: #020617;
+    --card-bg: #0B1120;
+    --card-border: #1E293B;
+    --text-main: #F8FAFC;
+    --text-sub: #94A3B8;
+
+    /* primary button */
+    --primary-btn-bg: #1E1B4B;
+    --primary-btn-border: #6366F1;
+    --primary-btn-txt: #E0E7FF;
+
+    --primary-hover-bg: #312E81;
+    --primary-hover-border: #818CF8;
+    --primary-hover-txt: #FFFFFF;
+
+    --primary-active-bg: #1E1B4B;
+    --primary-active-border: #4F46E5;
+    --primary-active-txt: #C7D2FE;
+
+    /* theme toggle */
+    --toggle-bg: #1E293B;
+}
+
+/* Dark mode — OS preference fallback (when no data-theme is set yet) */
 @media (prefers-color-scheme: dark) {
-    :root {
+    :root:not([data-theme="light"]) {
         --main-bg: #020617;
         --card-bg: #0B1120;
         --card-border: #1E293B;
         --text-main: #F8FAFC;
         --text-sub: #94A3B8;
 
-        /* interactives */
-            /* primary button */
-            --primary-btn-bg: #1E1B4B;
-            --primary-btn-border: #6366F1;
-            --primary-btn-txt: #E0E7FF;
+        --primary-btn-bg: #1E1B4B;
+        --primary-btn-border: #6366F1;
+        --primary-btn-txt: #E0E7FF;
 
-            --primary-hover-bg: #312E81;
-            --primary-hover-border: #818CF8;
-            --primary-hover-txt: #FFFFFF;
+        --primary-hover-bg: #312E81;
+        --primary-hover-border: #818CF8;
+        --primary-hover-txt: #FFFFFF;
 
-            --primary-active-bg: #1E1B4B;
-            --primary-active-border: #4F46E5;
-            --primary-active-txt: #C7D2FE;
+        --primary-active-bg: #1E1B4B;
+        --primary-active-border: #4F46E5;
+        --primary-active-txt: #C7D2FE;
+
+        --toggle-bg: #1E293B;
     }
 }
