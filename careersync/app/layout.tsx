@@ -16,7 +16,7 @@ const plusJakarta = Plus_Jakarta_Sans({
 
 export const metadata: Metadata = {
   title: "CareerSync",
-  description: "Gemini Powered",
+  description: "Gemini Powered decision-support webapp that aligns IT and CS students with industry-related career recommendations. Developed by Marc Botis.",
 };
 
 export default function RootLayout({
