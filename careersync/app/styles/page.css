@@ -1,3 +1,7 @@
+body {
+    background-color: #F8FAFC;
+}
+
 .program-toggle-div {
     /* layout */
     display: flex;
@@ -6,6 +10,7 @@
     align-items: center;
     padding: 10px; 
 }
+
 .program-section {
     /* layout */
     display: flex;

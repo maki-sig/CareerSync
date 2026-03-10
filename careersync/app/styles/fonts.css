@@ -1,0 +1,47 @@
+.title-txt {
+    margin: 0;
+    color: var(--text-main);
+    font-family: var(--space-grotesk);
+    font-weight: 700; 
+    font-size: 36px;
+}
+
+.category-txt {
+    margin: 0;
+    color: var(--text-main);
+    font-family: var(--space-grotesk);
+    font-weight: 500;
+    font-size: 24px;
+}
+
+.question-txt {
+    margin: 0;
+    color: var(--text-main);
+    font-family: var(--plus-jakarta);
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.btn-txt {
+    margin: 0;
+    font-family: var(--plus-jakarta);
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.option-txt {
+    margin: 0;
+    color: var(--text-sub);
+    font-family: var(--plus-jakarta);
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.caption-txt {
+    margin: 0;
+    color: var(--text-sub);
+    font-family: var(--plus-jakarta);
+    font-weight: 400;
+    font-size: 12px;
+}
+
