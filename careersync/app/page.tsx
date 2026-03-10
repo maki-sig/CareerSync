@@ -7,17 +7,14 @@ export default function Landing(){
         <span>svg here</span>
       </div> 
       <section className="program-section"> 
-        <h1>CareerSync</h1> 
-        <span>This  is a decision support form based web app that will align IT and CS students to related industry careers. Powered by Gemini.</span>
+        <h1 className="title-txt">CareerSync</h1> 
+        <span className="desc option-txt">This  is a decision support form based web app that will align IT and CS students to related industry careers.<br></br>Powered by Gemini.</span>
         {/* the card */}
         <div className="program-card"> 
-          <span>Choose your program to start</span>
-          {/* btn grp */}
-          <div>
-            <button>Computer Science</button>
-            <button>Information Technology</button>
-          </div> 
-          <span>Developed by: Marc Botis</span> 
+          <span className="caption-txt">Choose your program to start</span>
+          <button className="btn-txt">Computer Science</button>
+          <button className="btn-txt">Information Technology</button> 
+          <span className="caption-txt">Developed by: Marc Botis</span> 
         </div>
       </section> 
     </>
