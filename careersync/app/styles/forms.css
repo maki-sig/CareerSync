@@ -56,11 +56,10 @@
 }
 
 /* ── Workstyle section ──────────────────────────────────── */
-.workstyle-section {
+.workstyle-section, .subjects-section {
     /* layout */
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: column; 
     align-items: center;
     flex: 1;
     align-self: stretch;
@@ -68,32 +67,35 @@
     padding: 0 16px 32px;   /* compact on mobile */
 }
 
+.workstyle-section { justify-content: center; }
+.subjects-section { justify-content: start; }
+
 @media (min-width: 480px) {
-    .workstyle-section {
+    .workstyle-section, .subjects-section {
         gap: 28px;
         padding: 0 32px 40px;
     }
 }
 
 @media (min-width: 768px) {
-    .workstyle-section {
+    .workstyle-section, .subjects-section {
         gap: 35px;
         padding: 0 20px 20px;
     }
 }
 
 @media (min-width: 1024px) {
-    .workstyle-section {
+    .workstyle-section, .subjects-section {
         padding: 0 100px 50px;
     }
 }
 
-/* ── Workstyle card ─────────────────────────────────────── */
-.form-card {
+/* ── cards ─────────────────────────────────────── */
+.workstyle-card, .subjects-card {
     /* layout */
     display: flex;
     width: 100%;
-    max-width: 600px;
+    /* max-width: 600px; */
     height: fit-content;
     padding: 20px;          /* tight on mobile */
     flex-direction: column;
@@ -106,22 +108,25 @@
     border: 1px solid var(--card-border);
 }
 
+.workstyle-card { max-width: 600px; }
+.subjects-card { max-width: 700px; }
+
 @media (min-width: 480px) {
-    .form-card {
+    .workstyle-card, .subjects-card {
         padding: 32px;
         gap: 22px;
     }
 }
 
 @media (min-width: 768px) {
-    .form-card {
+    .workstyle-card, .subjects-card {
         padding: 40px;
         gap: 25px;
     }
 }
 
 @media (min-width: 1024px) {
-    .form-card {
+    .workstyle-card, .subjects-card {
         padding: 50px;
     }
 }
@@ -215,4 +220,13 @@
     .workstyle-btn-grp label {
         transition: none;
     }
+}
+
+/* SUBJECTS SECTION */
+.subjects-secbtn-grp {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
 }
