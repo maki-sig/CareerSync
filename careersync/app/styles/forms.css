@@ -56,7 +56,10 @@
 }
 
 /* ── Workstyle section ──────────────────────────────────── */
-.workstyle-section, .subjects-section {
+.workstyle-section, 
+.subjects-section, 
+.softskills-section,
+.hobbies-section {
     /* layout */
     display: flex;
     flex-direction: column; 
@@ -67,8 +70,8 @@
     padding: 0 16px 32px;   /* compact on mobile */
 }
 
-.workstyle-section { justify-content: center; }
-.subjects-section { justify-content: start; }
+.workstyle-section, .softskills-section { justify-content: center; }
+.subjects-section, .hobbies-section { justify-content: start; }
 
 @media (min-width: 480px) {
     .workstyle-section, .subjects-section {
@@ -91,7 +94,10 @@
 }
 
 /* ── cards ─────────────────────────────────────── */
-.workstyle-card, .subjects-card {
+.workstyle-card, 
+.subjects-card,
+.softskills-card,
+.hobbies-card {
     /* layout */
     display: flex;
     width: 100%;
@@ -109,26 +115,35 @@
 }
 
 .workstyle-card { max-width: 600px; }
-.subjects-card { max-width: 700px; }
+.subjects-card, .softskills-card, .hobbies-card { max-width: 700px; }
 
 @media (min-width: 480px) {
-    .workstyle-card, .subjects-card {
-        padding: 32px;
-        gap: 22px;
-    }
+    .workstyle-card, 
+    .subjects-card,
+    .softskills-card,
+    .hobbies-card {
+            padding: 32px;
+            gap: 22px;
+        }
 }
 
 @media (min-width: 768px) {
-    .workstyle-card, .subjects-card {
-        padding: 40px;
-        gap: 25px;
-    }
+    .workstyle-card, 
+    .subjects-card,
+    .softskills-card,
+    .hobbies-card {
+            padding: 40px;
+            gap: 25px;
+        }
 }
 
 @media (min-width: 1024px) {
-    .workstyle-card, .subjects-card {
+    .workstyle-card, 
+    .subjects-card,
+    .softskills-card,
+    .hobbies-card {
         padding: 50px;
-    }
+        }
 }
 
 /* ── Workstyle button group ─────────────────────────────── */
@@ -223,7 +238,7 @@
 }
 
 /* SUBJECTS SECTION */
-.subjects-secbtn-grp {
+.secbtn-grp {
     display: flex;
     flex-direction: row;
     align-items: center;
