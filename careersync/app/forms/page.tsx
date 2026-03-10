@@ -7,7 +7,32 @@ import "../styles/forms.css"
 type WorkStyle = "Collaborative" | "Independent" | null
 type SoftSkill = "Logical and systematic thinker" | "Efficiency and performance driven" | "Fast-acting and highly adaptive" | "Clear and effective communicator" | null
 
-const SUBJECTS = ["Subject 1","Subject 2","Subject 3","Subject 4","Subject 5","Subject 6","Subject 7","Subject 8","Subject 9","Subject 10"]
+const SUBJECTS_IT = [
+    "Networking & Infrastructure",
+    "Cybersecurity",
+    "Database Administration",
+    "Systems Administration",
+    "Web Development",
+    "Cloud Computing",
+    "IT Project Management",
+    "Technical Support",
+    "Network Security",
+    "IT Service Management",
+]
+
+const SUBJECTS_CS = [
+    "Data Structures & Algorithms",
+    "Operating Systems",
+    "Software Engineering",
+    "Artificial Intelligence",
+    "Machine Learning",
+    "Computer Architecture",
+    "Programming Languages",
+    "Discrete Mathematics",
+    "Computer Graphics",
+    "Theory of Computation",
+]
+
 const HOBBIES  = ["Puzzles","Visual arts","Fitness","Music","Reading","Outdoor exploration","Socializing","Self-reflecting","Craft & building","Collecting data & trends"]
 
 export default function Forms() {
@@ -66,7 +91,7 @@ export default function Forms() {
                                 {(["Collaborative", "Independent"] as WorkStyle[]).map(option => (
                                     <label
                                         key={option!}
-                                        className={`btn-txt workstyle-option ${workStyle === option ? "selected" : ""}`}
+                                        className={`option-txt workstyle-option ${workStyle === option ? "selected" : ""}`}
                                     >
                                         <input
                                             type="radio"
@@ -81,7 +106,7 @@ export default function Forms() {
                             </div>
                         </div>
 
-                        <div className="secbtn-grp">
+                        <div className="nav-btn-grp">
                             <button
                                 type="button"
                                 className="secondary-btn btn-txt"
@@ -103,20 +128,21 @@ export default function Forms() {
                             <span className="caption-txt">Select the areas where you feel most confident or find the highest level of interest</span>
 
                             <div className="subjects-checkbox-grp">
-                                {SUBJECTS.map(subject => (
-                                    <label key={subject} className="btn-txt checkbox-option">
+                                {SUBJECTS_CS.map(subject => (
+                                    <label key={subject} className="option-txt checkbox-option">
                                         <input
                                             type="checkbox"
                                             checked={subjects.includes(subject)}
                                             onChange={() => toggleCheckbox(subject, subjects, setSubjects)}
                                         />
+                                        <span className="checkbox-box" />
                                         {subject}
                                     </label>
                                 ))}
                             </div>
                         </div>
 
-                        <div className="secbtn-grp">
+                        <div className="nav-btn-grp">
                             <button type="button" className="secondary-btn btn-txt" onClick={() => setPage(1)}>Back</button>
                             <button type="button" className="secondary-btn btn-txt" onClick={() => setPage(3)}>Next</button>
                         </div>
@@ -141,7 +167,7 @@ export default function Forms() {
                                 ] as SoftSkill[]).map(option => (
                                     <label
                                         key={option!}
-                                        className={`btn-txt softskill-option ${softSkill === option ? "selected" : ""}`}
+                                        className={`option-txt softskill-option ${softSkill === option ? "selected" : ""}`}
                                     >
                                         <input
                                             type="radio"
@@ -156,7 +182,7 @@ export default function Forms() {
                             </div>
                         </div>
 
-                        <div className="secbtn-grp">
+                        <div className="nav-btn-grp">
                             <button type="button" className="secondary-btn btn-txt" onClick={() => setPage(2)}>Back</button>
                             <button type="button" className="secondary-btn btn-txt" onClick={() => setPage(4)}>Next</button>
                         </div>
@@ -174,21 +200,22 @@ export default function Forms() {
 
                             <div className="hobbies-checkbox-grp">
                                 {HOBBIES.map(hobby => (
-                                    <label key={hobby} className="btn-txt checkbox-option">
+                                    <label key={hobby} className="option-txt checkbox-option">
                                         <input
                                             type="checkbox"
                                             checked={hobbies.includes(hobby)}
                                             onChange={() => toggleCheckbox(hobby, hobbies, setHobbies)}
                                         />
+                                        <span className="checkbox-box" />
                                         {hobby}
                                     </label>
                                 ))}
                             </div>
                         </div>
 
-                        <div className="secbtn-grp">
+                        <div className="nav-btn-grp">
                             <button type="button" className="secondary-btn btn-txt" onClick={() => setPage(3)}>Back</button>
-                            <button type="button" className="primary-btn btn-txt" onClick={handleSubmit}>Submit</button>
+                            <button type="button" className="submit-btn btn-txt" onClick={handleSubmit}>Submit</button>
                         </div>
                     </div>
                 )}

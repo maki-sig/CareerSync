@@ -63,6 +63,16 @@
     --secondary-active-border: #64748B;
     --secondary-active-txt: #0F172A;
 
+    /* checkbox */
+    --box-bg: #FFFFFF;
+    --box-border: #CBD5E1;
+
+    --box-hover-bg: #F5F3FF;
+    --box-hover-border: #818CF8;
+
+    --box-checked-bg: #6366F1;
+    --box-checked-border: #4F46E5;
+
     /* theme toggle */
     --toggle-bg: #E2E8F0;
 }
@@ -130,6 +140,16 @@
     --secondary-active-bg: #020617;
     --secondary-active-border: #1E293B;
     --secondary-active-txt: #64748B;
+
+    /* checkbox */
+    --box-bg: #0F172A;
+    --box-border: #334155;
+
+    --box-hover-bg: #1E1B4B;
+    --box-hover-border: #6366F1;
+
+    --box-checked-bg: #6366F1;
+    --box-checked-border: #818CF8;
 
     /* theme toggle */
     --toggle-bg: #1E293B;
