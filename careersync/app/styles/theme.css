@@ -5,6 +5,20 @@
     --card-border: #E2E8F0;
     --text-main: #1E1B4B;
     --text-sub: #636E81;
+
+    /* interactives */
+        /* primary button */
+        --primary-btn-bg: #EEF2FF;
+        --primary-btn-border: #818CF8;
+        --primary-btn-txt: #4338CA;
+
+        --primary-hover-bg: #E0E7FF;
+        --primary-hover-border: #6366F1;
+        --primary-hover-txt: #3730A3;
+
+        --primary-active-bg: #C7D2FE;
+        --primary-active-border: #4F46E5;
+        --primary-active-txt: #312E81;
 }
 
 /* Dark mode */
@@ -15,5 +29,19 @@
         --card-border: #1E293B;
         --text-main: #F8FAFC;
         --text-sub: #94A3B8;
+
+        /* interactives */
+            /* primary button */
+            --primary-btn-bg: #1E1B4B;
+            --primary-btn-border: #6366F1;
+            --primary-btn-txt: #E0E7FF;
+
+            --primary-hover-bg: #312E81;
+            --primary-hover-border: #818CF8;
+            --primary-hover-txt: #FFFFFF;
+
+            --primary-active-bg: #1E1B4B;
+            --primary-active-border: #4F46E5;
+            --primary-active-txt: #C7D2FE;
     }
 }
