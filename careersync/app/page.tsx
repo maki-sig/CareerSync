@@ -1,10 +1,13 @@
 import "../app/styles/page.css"
+import CSicon from "@/public/cs.svg";
+import ITicon from "@/public/it.svg"; 
+import ThemeToggle from "@/app/components/themetoggle"
 
 export default function Landing(){
   return(
     <>
       <div className="program-toggle-div"> 
-        <span>svg here</span>
+        <ThemeToggle />
       </div> 
       <section className="program-section"> 
         <h1 className="title-txt">CareerSync</h1> 
@@ -12,8 +15,14 @@ export default function Landing(){
         {/* the card */}
         <div className="program-card"> 
           <span className="caption-txt">Choose your program to start</span>
-          <button className="btn-txt">Computer Science</button>
-          <button className="btn-txt">Information Technology</button> 
+          <button className="btn-txt">
+            <CSicon />
+            Computer Science
+          </button>
+          <button className="btn-txt">
+            <ITicon />
+            Information Technology
+          </button> 
           <span className="caption-txt">Developed by: Marc Botis</span> 
         </div>
       </section> 

@@ -6,15 +6,6 @@ body {
     text-align: center;
 }
 
-/* ── Toggle row ─────────────────────────────────────────── */
-.program-toggle-div {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 10px;
-}
-
 /* ── Program section ────────────────────────────────────── */
 .program-section {
     display: flex;
@@ -78,8 +69,15 @@ body {
     }
 }
 
+CSicon {
+    width: 24px;
+    height: 24px;
+    aspect-ratio: 1/1;
+}
+
 /* ── Card button ────────────────────────────────────────── */
 .program-card button {
+    display: flex;
     width: 100%;
     padding: 12px 16px;     /* slightly shorter tap target baseline */
     justify-content: center;
@@ -95,6 +93,10 @@ body {
     /* smooth touch feedback */
     transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
     -webkit-tap-highlight-color: transparent;
+}
+
+.program-card button svg path {
+    fill: currentColor;
 }
 
 @media (min-width: 768px) {
