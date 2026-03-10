@@ -1,0 +1,232 @@
+.forms {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* ── Secondary button ───────────────────────────────────── */
+.secondary-btn {
+    /* layout */
+    display: flex;
+    padding: 8px 16px;      /* compact on mobile */
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    /* style */
+    background-color: var(--secondary-bg);
+    border: 1px solid var(--secondary-border);
+    color: var(--secondary-txt);
+
+    /* smooth touch feedback */
+    transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+@media (min-width: 480px) {
+    .secondary-btn {
+        padding: 9px 20px;
+    }
+}
+
+@media (min-width: 768px) {
+    .secondary-btn {
+        padding: 10px 25px;
+    }
+}
+
+.secondary-btn:hover {
+    background-color: var(--secondary-hover-bg);
+    border-color: var(--secondary-hover-border);
+    color: var(--secondary-hover-txt);
+}
+
+.secondary-btn:active {
+    background-color: var(--secondary-active-bg);
+    border-color: var(--secondary-active-border);
+    color: var(--secondary-active-txt);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .secondary-btn {
+        transition: none;
+    }
+}
+
+/* ── Workstyle section ──────────────────────────────────── */
+.workstyle-section, .subjects-section {
+    /* layout */
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    flex: 1;
+    align-self: stretch;
+    gap: 20px;
+    padding: 0 16px 32px;   /* compact on mobile */
+}
+
+.workstyle-section { justify-content: center; }
+.subjects-section { justify-content: start; }
+
+@media (min-width: 480px) {
+    .workstyle-section, .subjects-section {
+        gap: 28px;
+        padding: 0 32px 40px;
+    }
+}
+
+@media (min-width: 768px) {
+    .workstyle-section, .subjects-section {
+        gap: 35px;
+        padding: 0 20px 20px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .workstyle-section, .subjects-section {
+        padding: 0 100px 50px;
+    }
+}
+
+/* ── cards ─────────────────────────────────────── */
+.workstyle-card, .subjects-card {
+    /* layout */
+    display: flex;
+    width: 100%;
+    /* max-width: 600px; */
+    height: fit-content;
+    padding: 20px;          /* tight on mobile */
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+
+    /* style */
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+}
+
+.workstyle-card { max-width: 600px; }
+.subjects-card { max-width: 700px; }
+
+@media (min-width: 480px) {
+    .workstyle-card, .subjects-card {
+        padding: 32px;
+        gap: 22px;
+    }
+}
+
+@media (min-width: 768px) {
+    .workstyle-card, .subjects-card {
+        padding: 40px;
+        gap: 25px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .workstyle-card, .subjects-card {
+        padding: 50px;
+    }
+}
+
+/* ── Workstyle button group ─────────────────────────────── */
+.workstyle-btn-grp {
+    /* layout */
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;  /* stack on mobile */
+    justify-content: center;
+    align-items: stretch;
+    gap: 12px;
+    align-self: stretch;
+}
+
+@media (min-width: 480px) {
+    .workstyle-btn-grp {
+        flex-direction: row;  /* side by side from 480px up */
+        gap: 16px;
+    }
+}
+
+@media (min-width: 768px) {
+    .workstyle-btn-grp {
+        gap: 25px;
+    }
+}
+
+.workstyle-btn-grp label {
+    /* layout */
+    display: flex;
+    padding: 12px 24px;     /* compact on mobile */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    flex: 1 0 0;
+    cursor: pointer;
+
+    /* style */
+    background-color: var(--select-bg);
+    border: 1px solid var(--select-border);
+    color: var(--select-txt);
+
+    /* smooth touch feedback */
+    transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+@media (min-width: 480px) {
+    .workstyle-btn-grp label {
+        padding: 13px 36px;
+        gap: 9px;
+    }
+}
+
+@media (min-width: 768px) {
+    .workstyle-btn-grp label {
+        padding: 14px 50px;
+        gap: 10px;
+    }
+}
+
+.workstyle-btn-grp label:hover {
+    background-color: var(--select-hover-bg);
+    border-color: var(--select-hover-border);
+    color: var(--select-hover-txt);
+}
+
+.workstyle-btn-grp label:has(input[type="radio"]:checked) {
+    background-color: var(--selected-bg);
+    border-color: var(--selected-border);
+    color: var(--selected-txt);
+}
+
+.workstyle-btn-grp label:has(input[type="radio"]:checked):hover {
+    background-color: var(--selected-hover-bg);
+    border-color: var(--selected-hover-border);
+    color: var(--selected-hover-txt);
+}
+
+.workstyle-btn-grp input {
+    appearance: none;
+    -webkit-appearance: none;
+    display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .workstyle-btn-grp label {
+        transition: none;
+    }
+}
+
+/* SUBJECTS SECTION */
+.subjects-secbtn-grp {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+}

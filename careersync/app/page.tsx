@@ -1,12 +1,20 @@
+"use client"
+
+import { useRouter } from "next/navigation"
 import "../app/styles/page.css"
 import CSicon from "@/public/cs.svg";
 import ITicon from "@/public/it.svg"; 
 import ThemeToggle from "@/app/components/themetoggle"
 
 export default function Landing(){
+  const router = useRouter()
+
+  const handleProgram = () => {
+      router.push("/forms")
+  }
+
   return(
     <>
-
       <ThemeToggle />
 
       <section className="program-section">
@@ -17,11 +25,11 @@ export default function Landing(){
         {/* the card */}
         <div className="program-card"> 
           <span className="caption-txt">Choose your program to start</span>
-          <button className="btn-txt">
+          <button className="btn-txt" onClick={handleProgram}>
             <CSicon />
             Computer Science
           </button>
-          <button className="btn-txt">
+          <button className="btn-txt" onClick={handleProgram}>
             <ITicon />
             Information Technology
           </button> 
