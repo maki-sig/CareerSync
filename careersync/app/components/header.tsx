@@ -5,12 +5,19 @@ import ThemeToggle from "./themetoggle"
 import "../styles/nav.css"
 import Spark from "@/public/gemini.svg"
 
-export default function Header() {
+interface HeaderProps {
+    page?: 1 | 2 | 3 | 4
+    totalPages?: number
+}
+
+export default function Header({ page = 1, totalPages = 4 }: HeaderProps) {
     const router = useRouter()
 
     const handleRestart = () => {
         router.push("/")
     }
+
+    const progress = (page / totalPages) * 100
 
     return (
         <div className="head-grp">
@@ -18,6 +25,13 @@ export default function Header() {
             <div className="nav-bar">
                 <Spark />
                 <button className="btn-txt" onClick={handleRestart}>Restart</button>
+            </div>
+
+            <div className="progress-bar-track">
+                <div
+                    className="progress-bar-fill"
+                    style={{ width: `${progress}%` }}
+                />
             </div>
 
             <ThemeToggle />

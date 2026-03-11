@@ -74,7 +74,7 @@ export default function Forms() {
 
     return (
         <>
-            <Header />
+            <Header page={page} />
 
             <form className="forms">
 
