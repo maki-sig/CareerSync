@@ -1,3 +1,5 @@
+"use client"
+
 import "../app/styles/results.css"
 
 export default function Loading() {
