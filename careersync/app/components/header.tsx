@@ -14,6 +14,8 @@ export default function Header({ page = 1, totalPages = 4 }: HeaderProps) {
     const router = useRouter()
 
     const handleRestart = () => {
+        sessionStorage.removeItem("careersync_data")
+        document.cookie = "careersync_submitted=; path=/; max-age=0"
         router.push("/")
     }
 
