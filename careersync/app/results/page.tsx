@@ -8,6 +8,8 @@ export default function Results() {
     const router = useRouter()
 
     const handleRestart = () => {
+        sessionStorage.removeItem("careersync_data")
+        document.cookie = "careersync_submitted=; path=/; max-age=0"
         router.push("/")
     }
 
