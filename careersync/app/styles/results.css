@@ -24,6 +24,12 @@
     justify-content: center;
 }
 
+.results-card .caption-txt { 
+    color: var(--primary-btn-border) !important; 
+    width: 100%;
+    text-align: center;
+}
+
 .results-section .title-txt {
     text-align: center;
 }

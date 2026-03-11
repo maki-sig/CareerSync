@@ -46,7 +46,7 @@ function buildPrompt(data: {
     const { program, workStyle, subjects, softSkill, hobbies } = data
 
     return `
-A ${program} student has completed a career profile survey. Here are their responses:
+I'm a ${program} student that completed a career profile survey. Here are my responses:
 Program: ${program === "IT" ? "Information Technology" : "Computer Science"}
 Preffered work style: ${workStyle ?? "Not specified"}
 Technical subjects they enjoyed or excelled in:
@@ -54,7 +54,7 @@ ${subjects.length > 0 ? subjects.map(s => `- ${s}`).join("\n") : "- None selecte
 Interpersonal strength: ${softSkill ?? "Not specified"}
 Pesonal hobbies & interests:
 ${hobbies.length > 0 ? hobbies.map(h => `- ${h}`).join("\n") : "- None selected"}
-Based on this profile, recommend the single best-fit tech career for this student.
+Based on this profile, recommend the single best-fit tech career for me.
     `.trim()
 }
 
