@@ -10,12 +10,12 @@ export async function POST(req: Request) {
     const { text } = await generateText({
       model: google('gemini-2.5-flash'),  // ← updated model name
       system: `You are a career advisor for IT and Computer Science students.
-When given a student's profile, you respond ONLY with a valid JSON object — no markdown, no backticks, no explanation.
+When given a student's profile, you respond ONLY with a valid JSON object — no markdown, no backticks, no short and concise explanation.
 The JSON must follow this exact structure:
 {
   "role": "string (a specific job title, e.g. 'Cybersecurity Analyst', 'Machine Learning Engineer')",
-  "summary": "string (1-2 sentences describing this type of professional and what they do)",
-  "fitReason": "string (1-2 sentences directly connecting the student's work style, subjects, strengths, and hobbies to this role)",
+  "summary": "string (1 sentence describing this type of professional and what they do)",
+  "fitReason": "string (1 sentence directly connecting the student's work style, subjects, strengths, and hobbies to this role)",
   "confidence": number (0-100, how strongly their profile matches this career)
 }
 Output nothing except the JSON object.`,
