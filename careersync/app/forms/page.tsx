@@ -76,7 +76,6 @@ export default function Forms() {
     const [softSkill, setSoftSkill] = useState<SoftSkill>(null)
     const [hobbies, setHobbies] = useState<string[]>([])
     const [isLoading, setIsLoading] = useState(false)
-    const [error, setError] = useState<string | null>(null)
     const [validationMsg, setValidationMsg] = useState<string | null>(null)
 
     const toggleCheckbox = (
@@ -114,7 +113,6 @@ export default function Forms() {
 
         setValidationMsg(null)
         setIsLoading(true)
-        setError(null)
 
         const formData = { program, workStyle, subjects, softSkill, hobbies }
         const prompt = buildPrompt(formData)
@@ -139,7 +137,7 @@ export default function Forms() {
             router.push("/results")
         } catch (err) {
             console.error("Failed to fetch career recommendations:", err)
-            setError("Something went wrong generating your results. Please try again.")
+            alert("Something went wrong generating your results. Please try again later.")
             setIsLoading(false)
         }
     }
@@ -248,7 +246,6 @@ export default function Forms() {
                                 ))}
                             </div>
                         </div>
-                        {error && <p className="caption-txt error-txt">{error}</p>}
                         <div className="nav-btn-grp">
                             <button type="button" className="secondary-btn btn-txt" onClick={() => goToPage(3)}>Back</button>
                             <button
