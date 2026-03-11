@@ -24,6 +24,10 @@
     justify-content: center;
 }
 
+.results-section .title-txt {
+    text-align: center;
+}
+
 @media (min-width: 480px) {
     .results-section {
         gap: 28px;

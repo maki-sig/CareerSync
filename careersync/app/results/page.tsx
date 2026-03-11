@@ -19,6 +19,7 @@ export default function Results() {
 
     useEffect(() => {
         const raw = sessionStorage.getItem("careersync_results")
+        console.log("raw from sessionStorage:", raw) 
         if (!raw) {
             router.push("/")
             return
@@ -49,7 +50,7 @@ export default function Results() {
                 </h1>
                 <div className="results-card">
                     <span className="option-txt">{data.summary}</span>
-                    <span className="caption-txt">{data.fitReason}</span>
+                    <span className="option-txt">{data.fitReason}</span>
                     <span className="caption-txt">{data.confidence}% confidence match</span>
                 </div>
                 <button className="submit-btn btn-txt" onClick={handleRestart}>

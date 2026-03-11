@@ -130,11 +130,13 @@ export default function Forms() {
 
             const text = await res.text()
             const parsed = JSON.parse(text)
-
+            console.log("API response:", parsed)
             sessionStorage.setItem("careersync_results", JSON.stringify(parsed))
             sessionStorage.setItem("careersync_data", JSON.stringify(formData))
 
+            document.cookie = "careersync_submitted=true; path=/"
             router.push("/results")
+            
         } catch (err) {
             console.error("Failed to fetch career recommendations:", err)
             alert("Something went wrong generating your results. Please try again later.")
