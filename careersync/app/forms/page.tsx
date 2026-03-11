@@ -47,19 +47,13 @@ function buildPrompt(data: {
 
     return `
 A ${program} student has completed a career profile survey. Here are their responses:
-
 Program: ${program === "IT" ? "Information Technology" : "Computer Science"}
-
-Workflow Mode (preferred work style): ${workStyle ?? "Not specified"}
-
-Core Domains (technical subjects they enjoyed or excelled in):
+Preffered work style: ${workStyle ?? "Not specified"}
+Technical subjects they enjoyed or excelled in:
 ${subjects.length > 0 ? subjects.map(s => `- ${s}`).join("\n") : "- None selected"}
-
-Professional DNA (primary interpersonal strength): ${softSkill ?? "Not specified"}
-
-Side Quests (personal hobbies & interests):
+Interpersonal strength: ${softSkill ?? "Not specified"}
+Pesonal hobbies & interests:
 ${hobbies.length > 0 ? hobbies.map(h => `- ${h}`).join("\n") : "- None selected"}
-
 Based on this profile, recommend the single best-fit tech career for this student.
     `.trim()
 }
@@ -116,7 +110,7 @@ export default function Forms() {
 
         const formData = { program, workStyle, subjects, softSkill, hobbies }
         const prompt = buildPrompt(formData)
-
+        // console.log(prompt)
         try {
             const res = await fetch("/api/chat", {
                 method: "POST",

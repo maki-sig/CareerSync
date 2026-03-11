@@ -18,8 +18,7 @@ export default function Results() {
     const [data, setData] = useState<ResultsData | null>(null)
 
     useEffect(() => {
-        const raw = sessionStorage.getItem("careersync_results")
-        console.log("raw from sessionStorage:", raw) 
+        const raw = sessionStorage.getItem("careersync_results") 
         if (!raw) {
             router.push("/")
             return
