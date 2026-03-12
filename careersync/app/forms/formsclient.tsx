@@ -261,7 +261,7 @@ export default function Forms() {
                                 onClick={handleSubmit}
                                 disabled={isLoading}
                             >
-                                {isLoading ? "Analyzing..." : "Submit"}
+                                {isLoading ? "AI is Analyzing..." : "Submit"}
                             </button>
                         </div>
                     </div>
