@@ -95,6 +95,10 @@ CSicon {
     fill: currentColor;
 }
 
+.program-card a {
+    text-decoration: none;
+}
+
 @media (min-width: 768px) {
     .program-card button {
         padding: 14px 20px;

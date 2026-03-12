@@ -26,7 +26,9 @@ export default function Landing() {
                         <ITicon />
                         Information Technology
                     </button>
-                    <span className="caption-txt">Developed by: Marc Botis</span>
+                    <a href="https://github.com/maki-sig" target="blank"> 
+                        <span className="caption-txt">HelloKinaban @ Github && Tiktok || Marc Botis</span>
+                    </a>
                 </div>
             </section>
         </>
