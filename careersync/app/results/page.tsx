@@ -11,6 +11,7 @@ interface ResultsData {
     summary: string
     fitReason: string
     confidence: number
+    error?: "quota_exceeded" | "api_error"
 }
 
 export default function Results() {
@@ -18,7 +19,7 @@ export default function Results() {
     const [data, setData] = useState<ResultsData | null>(null)
 
     useEffect(() => {
-        const raw = sessionStorage.getItem("careersync_results") 
+        const raw = sessionStorage.getItem("careersync_results")
         if (!raw) {
             router.push("/")
             return
@@ -38,6 +39,52 @@ export default function Results() {
     }
 
     if (!data) return null
+
+    if (data.error === "quota_exceeded") {
+        return (
+            <>
+                <ThemeToggle />
+                <div className="results-section">
+                    <Spark />
+                    <h1 className="title-txt">Service Unavailable</h1>
+                    <div className="results-card">
+                        <span className="option-txt">
+                            We've temporarily hit our API limit. Please try again in a few minutes.
+                        </span>
+                        <span className="caption-txt">
+                            Please try again later.
+                        </span>
+                    </div>
+                    <button className="submit-btn btn-txt" onClick={handleRestart}>
+                        Try Again
+                    </button>
+                </div>
+            </>
+        )
+    }
+
+    if (data.error === "api_error") {
+        return (
+            <>
+                <ThemeToggle />
+                <div className="results-section">
+                    <Spark />
+                    <h1 className="title-txt">Something Went Wrong</h1>
+                    <div className="results-card">
+                        <span className="option-txt">
+                            We ran into an unexpected error while analyzing your results.
+                        </span>
+                        <span className="caption-txt">
+                            Please try again later.
+                        </span>
+                    </div>
+                    <button className="submit-btn btn-txt" onClick={handleRestart}>
+                        Try Again
+                    </button>
+                </div>
+            </>
+        )
+    }
 
     return (
         <>
