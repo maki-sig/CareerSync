@@ -110,7 +110,7 @@ export default function Forms() {
 
         const formData = { program, workStyle, subjects, softSkill, hobbies }
         const prompt = buildPrompt(formData)
-        // console.log(prompt)
+
         try {
             const res = await fetch("/api/chat", {
                 method: "POST",
@@ -119,22 +119,33 @@ export default function Forms() {
             })
 
             if (!res.ok) {
-                throw new Error(`API error: ${res.status} ${res.statusText}`)
+                const isQuota = res.status === 429
+                sessionStorage.setItem(
+                    "careersync_results",
+                    JSON.stringify({ error: isQuota ? "quota_exceeded" : "api_error" })
+                )
+                sessionStorage.setItem("careersync_data", JSON.stringify(formData))
+                document.cookie = "careersync_submitted=true; path=/"
+                router.push("/results")
+                return
             }
 
             const text = await res.text()
             const parsed = JSON.parse(text)
-            console.log("API response:", parsed)
             sessionStorage.setItem("careersync_results", JSON.stringify(parsed))
             sessionStorage.setItem("careersync_data", JSON.stringify(formData))
-
             document.cookie = "careersync_submitted=true; path=/"
             router.push("/results")
-            
+
         } catch (err) {
             console.error("Failed to fetch career recommendations:", err)
-            alert("Something went wrong generating your results. Please try again later.")
-            setIsLoading(false)
+            sessionStorage.setItem(
+                "careersync_results",
+                JSON.stringify({ error: "api_error" })
+            )
+            sessionStorage.setItem("careersync_data", JSON.stringify(formData))
+            document.cookie = "careersync_submitted=true; path=/"
+            router.push("/results")
         }
     }
 

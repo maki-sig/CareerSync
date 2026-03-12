@@ -16,7 +16,10 @@ const plusJakarta = Plus_Jakarta_Sans({
 
 export const metadata: Metadata = {
   title: "CareerSync",
-  description: "v1.0.1",
+  description: "v1.0.5",
+  icons: {
+        icon: "/favicon.png",
+    },
 };
 
 export default function RootLayout({
