@@ -24,95 +24,147 @@
     justify-content: center;
 }
 
-.results-card .caption-txt { 
-    color: var(--primary-btn-border) !important; 
+.results-card .confidence {
+    color: var(--primary-btn-border) !important;
     width: 100%;
-    text-align: center;
-}
-
-.results-section .title-txt {
-    text-align: center;
 }
 
 @media (min-width: 480px) {
-    .results-section {
-        gap: 28px;
-        padding: 0 32px 40px; 
-    }
+    .results-section { gap: 28px; padding: 0 32px 40px; }
 }
 
 @media (min-width: 768px) {
-    .results-section {
-        gap: 35px;
-        padding: 0 20px 20px;
-    }
+    .results-section { gap: 35px; padding: 0 20px 20px; }
 }
 
 @media (min-width: 1024px) {
-    .results-section {
-        padding: 0 100px 50px;
-    }
+    .results-section { padding: 0 100px 50px; }
 }
 
-/* ── Card ───────────────────────────────────────────────── */
-.results-card {
+/* ── Cards base ─────────────────────────────────────────── */
+.results-card,
+.key-card,
+.path-card {
     display: flex;
-    width: 100%;
-    height: fit-content;
-    padding: 20px;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: flex-start;
     gap: 20px;
+    padding: 25px 20px;
     background-color: var(--card-bg);
     border: 1px solid var(--card-border);
-    max-width: 450px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+/* mobile only: remove top border on stacked cards */
+.path-card,
+.key-card {
+    border-top: none;
 }
 
 @media (min-width: 480px) {
-    .results-card {
-        padding: 32px;
-        gap: 22px;
-    }
+    .results-card, .key-card, .path-card { padding: 25px 32px; gap: 22px; }
 }
 
 @media (min-width: 768px) {
-    .results-card {
-        padding: 40px;
-        gap: 25px;
-    }
+    .results-card, .key-card, .path-card { padding: 25px 40px; gap: 25px; }
 }
 
 @media (min-width: 1024px) {
-    .results-card {
+    .results-card, .key-card, .path-card {
         padding: 50px;
+        gap: 25px;
+        justify-content: start;
     }
 }
 
-/* ── Submit button ──────────────────────────────────────── */
-.submit-btn {
+/* ── Error state card ────────────────────────────────────── */
+.results-section > .results-card {
+    height: fit-content;
+    align-self: center;
+    flex: none;
+    max-width: 500px;
+}
+
+/* ── Row layout ─────────────────────────────────────────── */
+.results-row {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+}
+
+@media (min-width: 768px) {
+    .results-row {
+        flex-direction: row;
+        align-items: stretch;
+    }
+
+    .results-card {
+        flex: 0 0 500px;
+        width: 500px;
+        border-top: 1px solid var(--card-border);
+        border-left: 1px solid var(--card-border);
+    }
+
+    .path-card {
+        flex: 0 0 auto;
+        width: fit-content;
+        max-width: 400px;
+        border-top: 1px solid var(--card-border);
+        border-left: none;
+    }
+
+    .key-card {
+        flex: 0 0 auto;
+        width: fit-content;
+        border-top: 1px solid var(--card-border);
+        border-left: none;
+    }
+}
+
+/* ── Skill grid ─────────────────────────────────────────── */
+.skill-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 25px;
+    width: 100%;
+}
+
+/* ── Submit / retry buttons ─────────────────────────────── */
+.submit-btn, .retry-btn {
     display: flex;
     padding: 8px 16px;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    background-color: var(--primary-btn-bg);
-    border: 1px solid var(--primary-btn-border);
-    color: var(--primary-btn-txt);
     transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
     -webkit-tap-highlight-color: transparent;
 }
 
+.submit-btn {
+    background-color: var(--primary-btn-bg);
+    border: 1px solid var(--primary-btn-border);
+    color: var(--primary-btn-txt);
+}
+
+.sub-label {
+    color: var(--text-main) !important;
+}
+
+.retry-btn {
+    background-color: var(--secondary-bg);
+    border: 1px solid var(--secondary-border);
+    color: var(--secondary-txt);
+}
+
 @media (min-width: 480px) {
-    .submit-btn {
-        padding: 9px 20px;
-    }
+    .submit-btn, .retry-btn { padding: 9px 20px; }
 }
 
 @media (min-width: 768px) {
-    .submit-btn {
-        padding: 10px 25px;
-    }
+    .submit-btn, .retry-btn { padding: 10px 25px; }
 }
 
 .submit-btn:hover {
@@ -127,10 +179,20 @@
     color: var(--primary-active-txt);
 }
 
+.retry-btn:hover {
+    background-color: var(--secondary-hover-bg);
+    border-color: var(--secondary-hover-border);
+    color: var(--secondary-hover-txt);
+}
+
+.retry-btn:active {
+    background-color: var(--secondary-active-bg);
+    border-color: var(--secondary-active-border);
+    color: var(--secondary-active-txt);
+}
+
 @media (prefers-reduced-motion: reduce) {
-    .submit-btn {
-        transition: none;
-    }
+    .submit-btn, .retry-btn { transition: none; }
 }
 
 /* ── Loading bar ────────────────────────────────────────── */
@@ -142,9 +204,7 @@
     max-width: 450px;
 }
 
-.loading-label {
-    text-align: center;
-}
+.loading-label { text-align: center; }
 
 .loading-bar-track {
     width: 100%;
@@ -166,9 +226,22 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .loading-bar-fill {
-        animation: none;
-        width: 100%;
-        opacity: 0.4;
+    .loading-bar-fill { animation: none; width: 100%; opacity: 0.4; }
+}
+
+/* ── Button row ─────────────────────────────────────────── */
+.btn-row {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
+
+@media print {
+    .btn-row,
+    .results-section > svg,
+    header,
+    nav,
+    svg {
+        display: none !important;
     }
 }

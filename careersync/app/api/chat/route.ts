@@ -6,7 +6,6 @@ export const runtime = 'edge';
 function isQuotaError(err: unknown): boolean {
     const message = err instanceof Error ? err.message : String(err)
     const asAny = err as any
-
     return (
         asAny?.status === 429 ||
         asAny?.statusCode === 429 ||
@@ -24,18 +23,33 @@ export async function POST(req: Request) {
 
         const { text } = await generateText({
             model: google('gemini-2.5-flash'),
-            system: `Act as an IT and CS career advisor. When given a student profile, respond ONLY with a valid JSON object (no markdown, no prose).
-JSON Structure:
+            system: `You are a Philippine IT and Computer Science career advisor specializing in helping fresh graduates and students find their best-fit tech role.
+
+Given my student profile, analyze my strengths and respond ONLY with a single valid JSON object — no markdown fences, no prose, no explanation.
+
+JSON structure (all fields required):
 {
-  "role": "a or an + Specific job title",
-  "summary": "1-sentence role description",
-  "fitReason": "1-sentence connecting profile to role",
-  "confidence": 0-100
-}`,
+  "role": "string — 'a' or 'an' + specific job title (e.g. 'a Full-Stack Developer', 'an AI/ML Engineer')",
+  "summary": "string — 1 clear sentence describing what this role does day-to-day and very short explanation why I fit this role",
+  "confidence": number — integer 0–100 representing how well my profile matches this role,
+  "keySkills": ["string"] — exactly 6 skills the student should develop: 4 specific technical skills (tools, languages, frameworks) and 2 relevant soft skills for this role,
+  "careerPath": ["string"] — exactly 4 very short, actionable steps a student should take to break into this role (e.g. 'Build 2–3 portfolio projects using React and Node.js', 'Get an internship at a local startup or BPO tech team', 'Earn a relevant certification like AWS Cloud Practitioner'). These are practical to-do steps, not job titles.
+  "salaryMin": number — estimated entry-level annual salary in PHP (realistic PH market rate, integer),
+  "salaryMax": number — estimated mid-level annual salary in PHP (realistic PH market rate, integer)
+}
+
+Rules:
+- Base salary on current Philippine tech industry rates
+- keySkills must be specific technologies, not soft skills
+- careerPath must be concrete, actionable steps — not job titles or vague advice
+- Each careerPath step should be 1 sentence max
+- confidence should reflect genuine fit, not optimism
+- Output valid JSON only — no trailing commas, no comments`,
             prompt,
         });
 
         const clean = text.replace(/```json|```/g, '').trim();
+        JSON.parse(clean);
 
         return new Response(clean, {
             headers: { 'Content-Type': 'application/json' },
@@ -48,22 +62,13 @@ JSON Structure:
         if (isQuotaError(err)) {
             return new Response(
                 JSON.stringify({ error: 'quota_exceeded', message }),
-                {
-                    status: 429,
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Retry-After': '60',
-                    },
-                }
+                { status: 429, headers: { 'Content-Type': 'application/json', 'Retry-After': '60' } }
             )
         }
 
         return new Response(
             JSON.stringify({ error: 'api_error', message }),
-            {
-                status: 500,
-                headers: { 'Content-Type': 'application/json' },
-            }
+            { status: 500, headers: { 'Content-Type': 'application/json' } }
         )
     }
 }
