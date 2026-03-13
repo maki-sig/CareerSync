@@ -30,7 +30,8 @@ Given my student profile, analyze my strengths and respond ONLY with a single va
 JSON structure (all fields required):
 {
   "role": "string — 'a' or 'an' + specific job title (e.g. 'a Full-Stack Developer', 'an AI/ML Engineer')",
-  "summary": "string — 1 clear sentence describing what this role does day-to-day and very short explanation why I fit this role",
+  "summary": "string — 1 clear sentence describing what this role does day-to-day",
+  "reason:" "string — 1 clear very short sentence of why I fit the role"
   "confidence": number — integer 0–100 representing how well my profile matches this role,
   "keySkills": ["string"] — exactly 6 skills the student should develop: 4 specific technical skills (tools, languages, frameworks) and 2 relevant soft skills for this role,
   "careerPath": ["string"] — exactly 4 very short, actionable steps a student should take to break into this role (e.g. 'Build 2–3 portfolio projects using React and Node.js', 'Get an internship at a local startup or BPO tech team', 'Earn a relevant certification like AWS Cloud Practitioner'). These are practical to-do steps, not job titles.

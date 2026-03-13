@@ -9,7 +9,7 @@ import ThemeToggle from "../components/themetoggle"
 interface ResultsData {
     role: string
     summary: string
-    fitReason: string
+    reason: string
     confidence: number
     keySkills: string[]
     careerPath: string[]
@@ -94,7 +94,11 @@ export default function Results() {
                             </span>
                         )}
                         <span className="option-txt">{data.summary}</span>
+                        <span className="option-txt">{data.reason}</span>
                         <span className="caption-txt confidence">{data.confidence}% confidence match</span>
+                        <div className="confidence-track">
+                            <div className="confidence-fill" style={{ width: `${data.confidence}%` }} />
+                        </div>
                     </div>
 
                     <div className="path-card">
