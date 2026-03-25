@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Plus_Jakarta_Sans } from "next/font/google"; 
+import { Space_Grotesk, Plus_Jakarta_Sans } from "next/font/google";
 import "../app/styles/global.css"
 import "../app/styles/theme.css"
 import "../app/styles/fonts.css"
-
+import { Analytics } from "@vercel/analytics/next"
 const spaceGrotesk = Space_Grotesk({
   variable: "--space-grotesk",
   subsets: ["latin"],
@@ -18,8 +18,8 @@ export const metadata: Metadata = {
   title: { template: 'CareerSync - %s', default: 'CareerSync' },
   description: "v1.0.5",
   icons: {
-        icon: "/favicon.png",
-    },
+    icon: "/favicon.png",
+  },
 };
 
 export default function RootLayout({
@@ -29,10 +29,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body 
+      <body
         className={`${spaceGrotesk.variable} ${plusJakarta.variable} antialiased`}
       >
         {children}
+        <Analytics />
       </body>
     </html>
   );
