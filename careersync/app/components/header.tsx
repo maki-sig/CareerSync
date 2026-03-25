@@ -8,12 +8,17 @@ import Spark from "@/public/gemini.svg"
 interface HeaderProps {
     page?: number
     totalPages?: number
+    onRestart?: () => void
 }
 
-export default function Header({ page = 1, totalPages = 4 }: HeaderProps) {
+export default function Header({ page = 1, totalPages = 4, onRestart }: HeaderProps) {
     const router = useRouter()
 
     const handleRestart = () => {
+        if (onRestart) {
+            onRestart()
+            return
+        }
         sessionStorage.removeItem("careersync_data")
         document.cookie = "careersync_submitted=; path=/; max-age=0"
         router.push("/")

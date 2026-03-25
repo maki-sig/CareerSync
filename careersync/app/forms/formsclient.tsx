@@ -160,10 +160,23 @@ export default function Forms() {
         }
     }
 
+    const handleRestart = () => {
+        setPage(1)
+        setWorkStyle(null)
+        setSubjects([])
+        setSoftSkill(null)
+        setHobbies([])
+        setValidationMsg(null)
+        setIsLoading(false)
+        sessionStorage.removeItem("careersync_results")
+        sessionStorage.removeItem("careersync_data")
+        document.cookie = "careersync_submitted=; path=/; max-age=0"
+    }
+
     return (
         <>
             {page === 1 && <ThemeToggle />}
-            {page !== 1 && <Header page={(page - 1) as 1 | 2 | 3 | 4} totalPages={4} />}
+            {page !== 1 && <Header page={page - 1} totalPages={4} onRestart={handleRestart} />}
 
             <form className="forms">
 
