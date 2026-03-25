@@ -64,6 +64,12 @@
     }
 }
 
+CSicon {
+    width: 24px;
+    height: 24px;
+    aspect-ratio: 1/1;
+}
+
 .program-card button {
     display: flex;
     width: 100%;

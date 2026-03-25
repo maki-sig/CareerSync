@@ -7,7 +7,6 @@ import ThemeToggle from "../components/themetoggle"
 import CSicon from "@/public/cs.svg"
 import ITicon from "@/public/it.svg"
 import "../styles/forms.css"
-import "../styles/page.css"
 
 type WorkStyle = "Collaborative" | "Independent" | null
 type SoftSkill = "Logical and systematic thinker" | "Efficiency and performance driven" | "Fast-acting and highly adaptive" | "Clear and effective communicator" | null
