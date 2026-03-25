@@ -1,9 +1,13 @@
 "use client"
 
 import { useState } from "react"
-import { useRouter, useSearchParams } from "next/navigation"
+import { useRouter } from "next/navigation"
 import Header from "../components/header"
+import ThemeToggle from "../components/themetoggle"
+import CSicon from "@/public/cs.svg"
+import ITicon from "@/public/it.svg"
 import "../styles/forms.css"
+import "../styles/page.css"
 
 type WorkStyle = "Collaborative" | "Independent" | null
 type SoftSkill = "Logical and systematic thinker" | "Efficiency and performance driven" | "Fast-acting and highly adaptive" | "Clear and effective communicator" | null
@@ -60,17 +64,17 @@ Based on this profile, recommend the single best-fit tech career for me.
 
 export default function Forms() {
     const router = useRouter()
-    const searchParams = useSearchParams()
-    const program = searchParams.get("program") === "IT" ? "IT" : "CS"
-    const SUBJECTS = program === "IT" ? SUBJECTS_IT : SUBJECTS_CS
 
-    const [page, setPage] = useState<1 | 2 | 3 | 4>(1)
+    const [page, setPage] = useState<1 | 2 | 3 | 4 | 5>(1)
+    const [program, setProgram] = useState<"IT" | "CS">("CS")
     const [workStyle, setWorkStyle] = useState<WorkStyle>(null)
     const [subjects, setSubjects] = useState<string[]>([])
     const [softSkill, setSoftSkill] = useState<SoftSkill>(null)
     const [hobbies, setHobbies] = useState<string[]>([])
     const [isLoading, setIsLoading] = useState(false)
     const [validationMsg, setValidationMsg] = useState<string | null>(null)
+
+    const SUBJECTS = program === "IT" ? SUBJECTS_IT : SUBJECTS_CS
 
     const toggleCheckbox = (
         value: string,
@@ -80,17 +84,24 @@ export default function Forms() {
         setter(list.includes(value) ? list.filter(v => v !== value) : [...list, value])
     }
 
-    const goToPage = (next: 1 | 2 | 3 | 4) => {
+    const selectProgram = (selected: "IT" | "CS") => {
+        setProgram(selected)
+        setSubjects([])
+        setValidationMsg(null)
+        setPage(2)
+    }
+
+    const goToPage = (next: 1 | 2 | 3 | 4 | 5) => {
         if (next > page) {
-            if (page === 1 && !workStyle) {
+            if (page === 2 && !workStyle) {
                 setValidationMsg("required")
                 return
             }
-            if (page === 2 && subjects.length === 0) {
+            if (page === 3 && subjects.length === 0) {
                 setValidationMsg("required")
                 return
             }
-            if (page === 3 && !softSkill) {
+            if (page === 4 && !softSkill) {
                 setValidationMsg("required")
                 return
             }
@@ -151,12 +162,36 @@ export default function Forms() {
 
     return (
         <>
-            <Header page={page} />
+            {page === 1 && <ThemeToggle />}
+            {page !== 1 && <Header page={(page - 1) as 1 | 2 | 3 | 4} totalPages={4} />}
 
             <form className="forms">
 
-                {/* ── PAGE 1: Workflow Mode ── */}
+                {/* ── PAGE 1: Program Selection (Landing) ── */}
                 {page === 1 && (
+                    <section className="program-section">
+                        <h1 className="title-txt">CareerSync</h1>
+                        <span className="desc option-txt">Answer this form to get an AI-driven career recommendation that aligns with who you are.<br />Powered by Gemini.</span>
+
+                        <div className="program-card">
+                            <span className="caption-txt">Choose your program to get started</span>
+                            <button type="button" className="btn-txt" onClick={() => selectProgram("CS")}>
+                                <CSicon />
+                                Computer Science
+                            </button>
+                            <button type="button" className="btn-txt" onClick={() => selectProgram("IT")}>
+                                <ITicon />
+                                Information Technology
+                            </button>
+                            <a href="https://github.com/maki-sig" target="blank">
+                                <span className="caption-txt">HelloKinaban @ Github && Tiktok || Marc Botis</span>
+                            </a>
+                        </div>
+                    </section>
+                )}
+
+                {/* ── PAGE 2: Workflow Mode ── */}
+                {page === 2 && (
                     <div className="workstyle-section">
                         <h1 className="category-txt">Workflow Mode</h1>
                         <div className="workstyle-card">
@@ -175,13 +210,14 @@ export default function Forms() {
                             </div>
                         </div>
                         <div className="nav-btn-grp">
-                            <button type="button" className="secondary-btn btn-txt" onClick={() => goToPage(2)}>Next</button>
+                            <button type="button" className="secondary-btn btn-txt" onClick={() => goToPage(1)}>Back</button>
+                            <button type="button" className="secondary-btn btn-txt" onClick={() => goToPage(3)}>Next</button>
                         </div>
                     </div>
                 )}
 
-                {/* ── PAGE 2: Core Domains ── */}
-                {page === 2 && (
+                {/* ── PAGE 3: Core Domains ── */}
+                {page === 3 && (
                     <div className="subjects-section">
                         <h1 className="category-txt">Core Domains</h1>
                         <div className="subjects-card">
@@ -201,14 +237,14 @@ export default function Forms() {
                             </div>
                         </div>
                         <div className="nav-btn-grp">
-                            <button type="button" className="secondary-btn btn-txt" onClick={() => goToPage(1)}>Back</button>
-                            <button type="button" className="secondary-btn btn-txt" onClick={() => goToPage(3)}>Next</button>
+                            <button type="button" className="secondary-btn btn-txt" onClick={() => goToPage(2)}>Back</button>
+                            <button type="button" className="secondary-btn btn-txt" onClick={() => goToPage(4)}>Next</button>
                         </div>
                     </div>
                 )}
 
-                {/* ── PAGE 3: Professional DNA ── */}
-                {page === 3 && (
+                {/* ── PAGE 4: Professional DNA ── */}
+                {page === 4 && (
                     <div className="softskills-section">
                         <h1 className="category-txt">Professional DNA</h1>
                         <div className="softskills-card">
@@ -227,14 +263,14 @@ export default function Forms() {
                             </div>
                         </div>
                         <div className="nav-btn-grp">
-                            <button type="button" className="secondary-btn btn-txt" onClick={() => goToPage(2)}>Back</button>
-                            <button type="button" className="secondary-btn btn-txt" onClick={() => goToPage(4)}>Next</button>
+                            <button type="button" className="secondary-btn btn-txt" onClick={() => goToPage(3)}>Back</button>
+                            <button type="button" className="secondary-btn btn-txt" onClick={() => goToPage(5)}>Next</button>
                         </div>
                     </div>
                 )}
 
-                {/* ── PAGE 4: Side Quests ── */}
-                {page === 4 && (
+                {/* ── PAGE 5: Side Quests ── */}
+                {page === 5 && (
                     <div className="hobbies-section">
                         <h1 className="category-txt">Side Quests</h1>
                         <div className="hobbies-card">
@@ -254,7 +290,7 @@ export default function Forms() {
                             </div>
                         </div>
                         <div className="nav-btn-grp">
-                            <button type="button" className="secondary-btn btn-txt" onClick={() => goToPage(3)}>Back</button>
+                            <button type="button" className="secondary-btn btn-txt" onClick={() => goToPage(4)}>Back</button>
                             <button
                                 type="button"
                                 className="submit-btn btn-txt"

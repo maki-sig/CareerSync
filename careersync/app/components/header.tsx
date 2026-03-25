@@ -6,7 +6,7 @@ import "../styles/nav.css"
 import Spark from "@/public/gemini.svg"
 
 interface HeaderProps {
-    page?: 1 | 2 | 3 | 4
+    page?: number
     totalPages?: number
 }
 
