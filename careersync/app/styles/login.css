@@ -65,7 +65,7 @@
 
 /* ── Floating label input wrapper ───────────────────────── */
 .input-wrapper {
-    position: relative; 
+    position: relative;
 }
 
 .input-wrapper label {
@@ -80,8 +80,8 @@
     padding: 0 4px;
 }
 
-.input-wrapper input:focus + label,
-.input-wrapper input:not(:placeholder-shown) + label {
+.input-wrapper input:focus+label,
+.input-wrapper input:not(:placeholder-shown)+label {
     transform: translateY(-210%);
     font-size: 0.72rem;
     color: var(--text-sub);
@@ -156,7 +156,7 @@
     height: 18px;
 }
 
-.toggle-password svg path { 
+.toggle-password svg path {
     fill: currentColor;
 }
 

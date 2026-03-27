@@ -5,7 +5,7 @@
     /* outline: red 1px solid; */
 }
 
-html, 
+html,
 body {
     height: 100%;
     overflow: auto;
@@ -13,4 +13,28 @@ body {
     display: flex;
     flex-direction: column;
     background-color: var(--main-bg);
+}
+
+/* ── Scrollbar ──────────────────────────────────────────── */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--card-border) var(--main-bg);
+}
+
+*::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+*::-webkit-scrollbar-track {
+    background: var(--main-bg);
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: var(--card-border);
+    border-radius: 0;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background-color: var(--card-bg);
 }
