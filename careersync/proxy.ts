@@ -31,8 +31,22 @@ export default async function proxy(request: NextRequest) {
     //     }
     // }
 
-    // add auth later
-    // here
+    // ── Auth Check ───────────────────────────────────────────
+    const userID = request.cookies.get("careersync_user_id")?.value;
+    const isApiChat = pathname.startsWith("/api/chat");
+    const isProtectedRoute = pathname === "/forms" || pathname === "/results";
+
+    if (!userID) {
+        if (isProtectedRoute) {
+            return NextResponse.redirect(new URL("/", request.url));
+        }
+        if (isApiChat) {
+            return new NextResponse(
+                JSON.stringify({ error: "unauthorized" }),
+                { status: 401, headers: { "Content-Type": "application/json" } }
+            );
+        }
+    }
 
     if (pathname === "/results") {
         const submitted = request.cookies.get("careersync_submitted")?.value
@@ -45,5 +59,5 @@ export default async function proxy(request: NextRequest) {
 }
 
 export const config = {
-    matcher: ["/forms", "/results", "/portal"],
+    matcher: ["/forms", "/results", "/api/chat/:path*"],
 }
