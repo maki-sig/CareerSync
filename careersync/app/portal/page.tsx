@@ -40,24 +40,120 @@ function validatePassword(password: string): string | null {
     return null;
 }
 
+const MAX_ATTEMPTS = 5;
+const LOCKOUT_MINUTES = 15;
+
 /* ── Login Form ─────────────────────────────────────────── */
 export function LoginForm({ onSwitch }: { onSwitch: () => void }) {
+    const router = useRouter();
     const [showPassword, setShowPassword] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+    const [loading, setLoading] = useState(false);
+
+    async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault();
+        setError(null);
+
+        const form = e.currentTarget;
+        const username = (form.elements.namedItem("login-username") as HTMLInputElement).value.trim();
+        const password = (form.elements.namedItem("login-password") as HTMLInputElement).value;
+
+        if (!username || !password) {
+            setError("Please fill in all fields.");
+            return;
+        }
+
+        setLoading(true);
+        const supabase = createClient();
+
+        // ── Fetch user ───────────────────────────────────────
+        const { data: user, error: fetchError } = await supabase
+            .from("User")
+            .select("userID, password, failedAttemptCount, lastFailedAttempt")
+            .eq("username", username)
+            .maybeSingle();
+
+        if (fetchError || !user) {
+            setError("Invalid username or password.");
+            setLoading(false);
+            return;
+        }
+
+        // ── Check lockout ────────────────────────────────────
+        if (user.failedAttemptCount >= MAX_ATTEMPTS && user.lastFailedAttempt) {
+            const lastFailed = new Date(user.lastFailedAttempt).getTime();
+            const minutesSince = (Date.now() - lastFailed) / 1000 / 60;
+
+            if (minutesSince < LOCKOUT_MINUTES) {
+                const remaining = Math.ceil(LOCKOUT_MINUTES - minutesSince);
+                setError(`Account locked. Try again in ${remaining} minute${remaining !== 1 ? "s" : ""}.`);
+                setLoading(false);
+                return;
+            }
+
+            // lockout expired, reset count
+            await supabase
+                .from("User")
+                .update({ failedAttemptCount: 0, lastFailedAttempt: null })
+                .eq("userID", user.userID);
+        }
+
+        // ── Verify password ──────────────────────────────────
+        const hashedPassword = await hashPassword(password);
+
+        if (hashedPassword !== user.password) {
+            const newCount = (user.failedAttemptCount ?? 0) + 1;
+            await supabase
+                .from("User")
+                .update({
+                    failedAttemptCount: newCount,
+                    lastFailedAttempt: new Date().toISOString(),
+                })
+                .eq("userID", user.userID);
+
+            const remaining = MAX_ATTEMPTS - newCount;
+            if (remaining > 0) {
+                setError(`Invalid username or password. ${remaining} attempt${remaining !== 1 ? "s" : ""} remaining.`);
+            } else {
+                setError(`Account locked for ${LOCKOUT_MINUTES} minutes due to too many failed attempts.`);
+            }
+
+            setLoading(false);
+            return;
+        }
+
+        // ── Success — reset failed attempts ──────────────────
+        await supabase
+            .from("User")
+            .update({ failedAttemptCount: 0, lastFailedAttempt: null })
+            .eq("userID", user.userID);
+
+        router.push("/forms");
+    }
 
     return (
         <>
             <h1 className="title-txt">Login</h1>
-            <form className="login-signup-card">
+            <form className="login-signup-card" onSubmit={handleSubmit}>
                 <div className="input-wrapper option-txt">
-                    <input type="text" id="login-username" placeholder=" " className="option-txt"/>
+                    <input
+                        type="text"
+                        id="login-username"
+                        name="login-username"
+                        placeholder=" "
+                        className="option-txt"
+                        required
+                    />
                     <label htmlFor="login-username">Username</label>
                 </div>
                 <div className="input-wrapper option-txt">
                     <input
                         type={showPassword ? "text" : "password"}
                         id="login-password"
+                        name="login-password"
                         placeholder=" "
                         className="option-txt"
+                        required
                     />
                     <label htmlFor="login-password">Password</label>
                     <button
@@ -69,13 +165,14 @@ export function LoginForm({ onSwitch }: { onSwitch: () => void }) {
                         {showPassword ? <EyeOffIcon /> : <EyeIcon />}
                     </button>
                 </div>
+                {error && <span className="caption-txt error-txt">{error}</span>}
                 <span className="caption-txt">
                     Don't have an account?{" "}
                     <a href="#" onClick={(e) => { e.preventDefault(); onSwitch(); }}>Sign up.</a>
                 </span>
-                <button type="submit" className="btn-txt">
+                <button type="submit" className="btn-txt" disabled={loading}>
                     <Loginicon />
-                    Login
+                    {loading ? "Signing in..." : "Login"}
                 </button>
             </form>
         </>
@@ -112,9 +209,9 @@ export function SignupForm({ onSwitch }: { onSwitch: () => void }) {
         }
 
         setLoading(true);
+        const supabase = createClient();
 
         // ── Check if username already exists ─────────────────
-        const supabase = createClient();
         const { data: existing } = await supabase
             .from("User")
             .select("username")
