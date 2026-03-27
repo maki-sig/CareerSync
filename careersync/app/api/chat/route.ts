@@ -84,7 +84,6 @@ Rules:
             }
         } catch (saveErr) {
             console.error("[/api/chat] Error saving to Supabase:", saveErr);
-            // We don't fail the request if saving fails, as user still wants results
         }
 
         return new Response(clean, {
