@@ -218,3 +218,7 @@
         transition: none;
     }
 }
+
+.error-txt {
+    color: var(--danger-btn-border);
+}

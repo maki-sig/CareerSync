@@ -1,12 +1,46 @@
 "use client"
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import ThemeToggle from "../components/themetoggle";
 import "../styles/login.css"
 import Loginicon from "@/public/login.svg"
 import EyeIcon from "@/public/eye.svg"
 import EyeOffIcon from "@/public/eye-off.svg"
+import { createClient } from "@/utils/supabase/client";
 
+/* ── Helpers ────────────────────────────────────────────── */
+async function hashPassword(password: string): Promise<string> {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(password);
+    const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
+}
+
+function validateUsername(username: string): string | null {
+    if (username.trim().length < 3)
+        return "Username must be at least 3 characters.";
+    if (username.trim().length > 20)
+        return "Username must be at most 20 characters.";
+    if (!/^[a-zA-Z0-9_]+$/.test(username))
+        return "Username can only contain letters, numbers, and underscores.";
+    return null;
+}
+
+function validatePassword(password: string): string | null {
+    if (password.length < 8)
+        return "Password must be at least 8 characters.";
+    if (!/[A-Z]/.test(password))
+        return "Password must contain at least one uppercase letter.";
+    if (!/[0-9]/.test(password))
+        return "Password must contain at least one number.";
+    if (!/[^a-zA-Z0-9]/.test(password))
+        return "Password must contain at least one special character.";
+    return null;
+}
+
+/* ── Login Form ─────────────────────────────────────────── */
 export function LoginForm({ onSwitch }: { onSwitch: () => void }) {
     const [showPassword, setShowPassword] = useState(false);
 
@@ -48,24 +82,94 @@ export function LoginForm({ onSwitch }: { onSwitch: () => void }) {
     );
 }
 
+/* ── Signup Form ────────────────────────────────────────── */
 export function SignupForm({ onSwitch }: { onSwitch: () => void }) {
+    const router = useRouter();
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+    const [loading, setLoading] = useState(false);
+
+    async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault();
+        setError(null);
+
+        const form = e.currentTarget;
+        const username = (form.elements.namedItem("signup-username") as HTMLInputElement).value.trim();
+        const password = (form.elements.namedItem("signup-password") as HTMLInputElement).value;
+        const confirmPassword = (form.elements.namedItem("confirm-password") as HTMLInputElement).value;
+
+        // ── Validation ───────────────────────────────────────
+        const usernameError = validateUsername(username);
+        if (usernameError) { setError(usernameError); return; }
+
+        const passwordError = validatePassword(password);
+        if (passwordError) { setError(passwordError); return; }
+
+        if (password !== confirmPassword) {
+            setError("Passwords do not match.");
+            return;
+        }
+
+        setLoading(true);
+
+        // ── Check if username already exists ─────────────────
+        const supabase = createClient();
+        const { data: existing } = await supabase
+            .from("User")
+            .select("username")
+            .eq("username", username)
+            .maybeSingle();
+
+        if (existing) {
+            setError("Username is already taken.");
+            setLoading(false);
+            return;
+        }
+
+        // ── Hash password & insert ───────────────────────────
+        const hashedPassword = await hashPassword(password);
+
+        const { error: insertError } = await supabase
+            .from("User")
+            .insert({
+                username,
+                password: hashedPassword,
+                failedAttemptCount: 0,
+            });
+
+        if (insertError) {
+            setError(insertError.message);
+            setLoading(false);
+            return;
+        }
+
+        router.push("/");
+    }
 
     return (
         <>
             <h1 className="title-txt">Create Account</h1>
-            <form className="login-signup-card">
+            <form className="login-signup-card" onSubmit={handleSubmit}>
                 <div className="input-wrapper option-txt">
-                    <input type="text" id="signup-username" placeholder=" " className="option-txt"/>
+                    <input
+                        type="text"
+                        id="signup-username"
+                        name="signup-username"
+                        placeholder=" "
+                        className="option-txt"
+                        required
+                    />
                     <label htmlFor="signup-username">Username</label>
                 </div>
                 <div className="input-wrapper option-txt">
                     <input
                         type={showPassword ? "text" : "password"}
                         id="signup-password"
+                        name="signup-password"
                         placeholder=" "
                         className="option-txt"
+                        required
                     />
                     <label htmlFor="signup-password">Password</label>
                     <button
@@ -81,8 +185,10 @@ export function SignupForm({ onSwitch }: { onSwitch: () => void }) {
                     <input
                         type={showConfirmPassword ? "text" : "password"}
                         id="confirm-password"
+                        name="confirm-password"
                         placeholder=" "
                         className="option-txt"
+                        required
                     />
                     <label htmlFor="confirm-password">Confirm Password</label>
                     <button
@@ -94,19 +200,21 @@ export function SignupForm({ onSwitch }: { onSwitch: () => void }) {
                         {showConfirmPassword ? <EyeOffIcon /> : <EyeIcon />}
                     </button>
                 </div>
+                {error && <span className="caption-txt error-txt">{error}</span>}
                 <span className="caption-txt">
                     Already have an account?{" "}
                     <a href="#" onClick={(e) => { e.preventDefault(); onSwitch(); }}>Sign in.</a>
                 </span>
-                <button type="submit" className="btn-txt">
+                <button type="submit" className="btn-txt" disabled={loading}>
                     <Loginicon />
-                    Sign Up
+                    {loading ? "Creating account..." : "Sign Up"}
                 </button>
             </form>
         </>
     );
 }
 
+/* ── Portal Page ────────────────────────────────────────── */
 export default function Portal() {
     const [view, setView] = useState<"login" | "signup">("login");
 
