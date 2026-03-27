@@ -1,5 +1,7 @@
 import { google } from '@ai-sdk/google';
 import { generateText } from 'ai';
+import { cookies } from 'next/headers';
+import { createClient } from '@/utils/supabase/server';
 
 export const runtime = 'edge';
 
@@ -31,7 +33,7 @@ JSON structure (all fields required):
 {
   "role": "string — specific job title (e.g. 'a Full-Stack Developer', 'an AI/ML Engineer')",
   "summary": "string — 1 clear sentence describing what this role does day-to-day",
-  "reason:" "string — 1 clear very short sentence of why I fit the role"
+  "reason": "string — 1 clear very short sentence of why I fit the role",
   "confidence": number — integer 0–100 representing how well my profile matches this role,
   "keySkills": ["string"] — exactly 6 skills the student should develop: 4 specific technical skills (tools, languages, frameworks) and 2 relevant soft skills for this role,
   "careerPath": ["string"] — exactly 4 very short, actionable steps a student should take to break into this role (e.g. 'Build 2–3 portfolio projects using React and Node.js', 'Get an internship at a local startup or BPO tech team', 'Earn a relevant certification like AWS Cloud Practitioner'). These are practical to-do steps, not job titles.
@@ -50,7 +52,40 @@ Rules:
         });
 
         const clean = text.replace(/```json|```/g, '').trim();
-        JSON.parse(clean);
+        const parsed = JSON.parse(clean);
+
+        // ── Save to Supabase if logged in ──────────────────
+        try {
+            const cookieStore = await cookies();
+            const userID = cookieStore.get("careersync_user_id")?.value;
+
+            if (userID) {
+                const supabase = await createClient();
+
+                const { error: insertError } = await supabase
+                    .from("Career")
+                    .insert({
+                        userID,
+                        role: parsed.role,
+                        summary: parsed.summary,
+                        reason: parsed.reason,
+                        confidence: parsed.confidence,
+                        keySkills: (parsed.keySkills ?? []).join(", "),
+                        careerPath: (parsed.careerPath ?? []).join("\n"),
+                        salaryMin: parsed.salaryMin,
+                        salaryMax: parsed.salaryMax,
+                    });
+
+                if (insertError) {
+                    console.error("[/api/chat] Failed to save career:", insertError.message);
+                } else {
+                    console.log("[/api/chat] Career recommendation saved for user:", userID);
+                }
+            }
+        } catch (saveErr) {
+            console.error("[/api/chat] Error saving to Supabase:", saveErr);
+            // We don't fail the request if saving fails, as user still wants results
+        }
 
         return new Response(clean, {
             headers: { 'Content-Type': 'application/json' },

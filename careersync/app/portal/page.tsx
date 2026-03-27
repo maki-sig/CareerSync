@@ -128,6 +128,7 @@ export function LoginForm({ onSwitch }: { onSwitch: () => void }) {
             .update({ failedAttemptCount: 0, lastFailedAttempt: null })
             .eq("userID", user.userID);
 
+        document.cookie = `careersync_user_id=${user.userID}; path=/; max-age=${60 * 60 * 24 * 7}`; // 1 week session
         router.push("/forms");
     }
 
@@ -239,6 +240,17 @@ export function SignupForm({ onSwitch }: { onSwitch: () => void }) {
             setError(insertError.message);
             setLoading(false);
             return;
+        }
+
+        // Auto-login after signup
+        const { data: newUser } = await supabase
+            .from("User")
+            .select("userID")
+            .eq("username", username)
+            .single();
+
+        if (newUser) {
+            document.cookie = `careersync_user_id=${newUser.userID}; path=/; max-age=${60 * 60 * 24 * 7}`;
         }
 
         router.push("/");

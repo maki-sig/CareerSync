@@ -130,7 +130,7 @@ export default function Results() {
                         Retry
                     </button>
                     <button className="submit-btn btn-txt" onClick={handlePrint}>
-                        Save
+                        Print
                     </button>
                 </div>
             </div>
