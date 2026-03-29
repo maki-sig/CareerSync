@@ -281,12 +281,12 @@
     margin-top: auto;
 }
 
-.side-bar span {
+.side-bar .nav-link {
     cursor: pointer;
     transition: color 0.15s ease;
 }
 
-.side-bar span:hover {
+.side-bar .nav-link:hover {
     color: var(--primary-btn-border);
 }
 
