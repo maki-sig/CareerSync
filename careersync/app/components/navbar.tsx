@@ -2,6 +2,7 @@
 
 import { useRouter, usePathname } from "next/navigation"
 import Link from "next/link"
+import { useEffect, useState } from "react"
 import { useDashboard } from "../dashboard/layout"
 import "../styles/nav.css"
 import Spark from "@/public/gemini.svg"
@@ -24,10 +25,19 @@ export default function Navbar({ progress = 0 }: NavbarProps) {
     const { sidebarOpen, setSidebarOpen, resetSurvey } = useDashboard()
     const router = useRouter()
     const pathname = usePathname()
+    const [isMobile, setIsMobile] = useState(false)
+
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 768)
+        checkMobile()
+        window.addEventListener("resize", checkMobile)
+        return () => window.removeEventListener("resize", checkMobile)
+    }, [])
 
     // Logic for conditional states
     const isRootPage = pathname === "/"
     const isFormsPage = pathname?.includes("/dashboard/forms")
+    const isPortalPage = pathname === "/portal"
 
     const handleReset = () => {
         if (window.confirm("Are you sure you want to reset your survey progress?")) {
@@ -43,8 +53,8 @@ export default function Navbar({ progress = 0 }: NavbarProps) {
         <div className="head-grp">
             <div className="nav-bar">
                 <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                    {/* Hide Menu Button if at root */}
-                    {!isRootPage && (
+                    {/* Hide Menu Button if at root or portal on mobile */}
+                    {!isRootPage && !(isPortalPage && isMobile) && (
                         <button className="menu-toggle" onClick={() => setSidebarOpen(!sidebarOpen)} aria-label="Toggle menu">
                             <MenuIcon />
                         </button>
