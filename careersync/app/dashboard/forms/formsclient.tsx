@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
-import { useProgress } from "../layout"
+import { useProgress, useDashboard } from "../layout"
 
 import CSicon from "@/public/cs.svg"
 import ITicon from "@/public/it.svg"
@@ -64,6 +64,7 @@ Based on this profile, recommend the single best-fit tech career for me.
 export default function FormsClient() {
     const router = useRouter()
     const { setProgress } = useProgress()
+    const { resetKey } = useDashboard()
 
     const [page, setPage] = useState<1 | 2 | 3 | 4 | 5>(1)
     const [program, setProgram] = useState<"IT" | "CS">("CS")
@@ -73,6 +74,18 @@ export default function FormsClient() {
     const [hobbies, setHobbies] = useState<string[]>([])
     const [isLoading, setIsLoading] = useState(false)
     const [validationMsg, setValidationMsg] = useState<string | null>(null)
+
+    // Listen to global reset
+    useEffect(() => {
+        if (resetKey > 0) {
+            setPage(1)
+            setWorkStyle(null)
+            setSubjects([])
+            setSoftSkill(null)
+            setHobbies([])
+            setValidationMsg(null)
+        }
+    }, [resetKey])
 
     const SUBJECTS = program === "IT" ? SUBJECTS_IT : SUBJECTS_CS
 

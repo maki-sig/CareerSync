@@ -1,11 +1,13 @@
 "use client";
 
 import "../styles/toggle.css";
-import Toggle from "@/public/theme.svg";
+import DarkIcon from "@/public/dark.svg";
+import LightIcon from "@/public/light.svg";
 import { useEffect, useState } from "react";
 
 export default function ToggleTheme() {
     const [isDark, setIsDark] = useState(false);
+    const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
         const saved = localStorage.getItem("theme");
@@ -13,6 +15,7 @@ export default function ToggleTheme() {
         const dark = saved ? saved === "dark" : prefersDark;
         setIsDark(dark);
         document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
+        setMounted(true);
     }, []);
 
     const toggle = () => {
@@ -23,14 +26,20 @@ export default function ToggleTheme() {
         document.documentElement.setAttribute("data-theme", theme);
     };
 
+    if (!mounted) return (
+        <div className="program-toggle-div" style={{ cursor: "wait" }}>
+            <div style={{ width: "20px", height: "20px" }} />
+        </div>
+    );
+
     return (
-        <div className="program-toggle-div">
-            <Toggle
-                onClick={toggle}
-                role="button"
-                aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
-                style={{ cursor: "pointer" }}
-            />
+        <div 
+            className="program-toggle-div" 
+            onClick={toggle}
+            role="button"
+            aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+        >
+            {isDark ? <LightIcon /> : <DarkIcon />}
         </div>
     );
 }

@@ -1,9 +1,10 @@
 "use client"
 
-import { useRouter } from "next/navigation"
+import { useRouter, usePathname } from "next/navigation"
 import { useDashboard } from "../dashboard/layout"
 import "../styles/nav.css"
 import Spark from "@/public/gemini.svg"
+import ResetIcon from "@/public/reset.svg"
 import ToggleTheme from "./themetoggle"
 
 interface NavbarProps {
@@ -19,7 +20,25 @@ function MenuIcon() {
 }
 
 export default function Navbar({ progress = 0 }: NavbarProps) {
-    const { setSidebarOpen } = useDashboard()
+    const { setSidebarOpen, resetSurvey } = useDashboard()
+    const router = useRouter()
+    const pathname = usePathname()
+    const isFormsPage = pathname?.includes("/dashboard/forms")
+
+    const handleReset = () => {
+        if (window.confirm("Are you sure you want to reset your survey progress?")) {
+            // Clear persistent data
+            sessionStorage.removeItem("careersync_results")
+            sessionStorage.removeItem("careersync_data")
+            document.cookie = "careersync_submitted=; path=/; max-age=0"
+            
+            // Trigger internal reset in FormsClient via context
+            resetSurvey()
+            
+            // Navigate back to start (Landing step in Forms)
+            router.push("/dashboard/forms")
+        }
+    }
 
     return (
         <div className="head-grp">
@@ -31,13 +50,26 @@ export default function Navbar({ progress = 0 }: NavbarProps) {
                     </button>
                     <Spark />
                 </div>
-                <ToggleTheme />
+                
+                <div style={{ display: "flex", alignItems: "center", gap: "15px" }}>
+                    {isFormsPage && (
+                        <button 
+                            className="reset-btn" 
+                            onClick={handleReset} 
+                            title="Reset Progress"
+                            aria-label="Reset Survey"
+                        >
+                            <ResetIcon />
+                        </button>
+                    )}
+                    <ToggleTheme />
+                </div>
             </div>
 
             {/* divider line with optional progress */}
             <div className="progress-bar-track">
                 <div 
-                    className="progress-bar-fill" 
+                    className={`progress-bar-fill ${progress === 0 ? "resetting" : ""}`}
                     style={{ width: `${progress}%` }} 
                 />
             </div>

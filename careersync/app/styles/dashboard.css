@@ -175,10 +175,31 @@
 
 .history-table tbody {
     display: block;
-    max-height: 250px;
-    /* Roughly 5 rows */
+    max-height: 300px;
+    /* Slightly taller for mobile flexibility */
     overflow-y: auto;
     width: 100%;
+}
+
+.mobile-date {
+    display: block;
+    font-size: 0.75rem;
+    opacity: 0.7;
+    margin-top: 2px;
+}
+
+.date-col {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .mobile-date {
+        display: none;
+    }
+
+    .date-col {
+        display: table-cell;
+    }
 }
 
 .history-table tr {
@@ -195,20 +216,33 @@
     background-color: var(--card-bg);
 }
 
-/* Specific column widths for alignment */
+/* Initial mobile widths */
 .history-table th:nth-child(1),
 .history-table td:nth-child(1) {
-    width: 50%;
-}
-
-.history-table th:nth-child(2),
-.history-table td:nth-child(2) {
-    width: 25%;
+    width: 75%;
 }
 
 .history-table th:nth-child(3),
 .history-table td:nth-child(3) {
     width: 25%;
+}
+
+@media (min-width: 768px) {
+
+    .history-table th:nth-child(1),
+    .history-table td:nth-child(1) {
+        width: 50%;
+    }
+
+    .history-table th:nth-child(2),
+    .history-table td:nth-child(2) {
+        width: 25%;
+    }
+
+    .history-table th:nth-child(3),
+    .history-table td:nth-child(3) {
+        width: 25%;
+    }
 }
 
 .history-table td {
@@ -255,7 +289,7 @@
 }
 
 .view-btn svg path {
-    color: var(--text-main);
+    color: var(--primary-btn-border);
     fill: currentColor;
 }
 
@@ -267,16 +301,17 @@
     align-items: center;
     justify-content: center;
     padding: 4px;
+    transform: translateY(-1px); /* Match view svg baseline exactly */
 }
 
 .delete-btn svg {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
 }
 
 .delete-btn svg path {
     color: var(--danger-btn-border);
-    stroke: currentColor;
+    fill: currentColor;
 }
 
 @media (min-width: 480px) {

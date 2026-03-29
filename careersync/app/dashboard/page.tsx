@@ -228,15 +228,20 @@ export default function Dashboard() {
                             <thead>
                                 <tr>
                                     <th className="caption-txt">Career Recommendation</th>
-                                    <th className="caption-txt">Generated On</th>
+                                    <th className="caption-txt date-col">Generated On</th>
                                     <th className="caption-txt" style={{ textAlign: "right" }}>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {history.map((item, idx) => (
                                     <tr key={item.careerID || idx}>
-                                        <td className="option-txt">{item.role}</td>
-                                        <td className="caption-txt">{new Date(item.created_at).toLocaleDateString()}</td>
+                                        <td className="option-txt">
+                                            <div style={{ display: "flex", flexDirection: "column" }}>
+                                                {item.role}
+                                                <span className="caption-txt mobile-date">{new Date(item.created_at).toLocaleDateString()}</span>
+                                            </div>
+                                        </td>
+                                        <td className="caption-txt date-col">{new Date(item.created_at).toLocaleDateString()}</td>
                                         <td>
                                             <div className="action-grp">
                                                 <button 

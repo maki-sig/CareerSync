@@ -10,11 +10,15 @@ const DashboardContext = createContext<{
     setProgress: (value: number) => void;
     sidebarOpen: boolean;
     setSidebarOpen: (value: boolean) => void;
+    resetKey: number;
+    resetSurvey: () => void;
 }>({
     progress: 0,
     setProgress: () => { },
     sidebarOpen: false,
     setSidebarOpen: () => { },
+    resetKey: 0,
+    resetSurvey: () => { },
 })
 
 export const useDashboard = () => useContext(DashboardContext)
@@ -26,9 +30,15 @@ export const useProgress = () => {
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
     const [progress, setProgress] = useState(0)
     const [sidebarOpen, setSidebarOpen] = useState(false)
+    const [resetKey, setResetKey] = useState(0)
+
+    const resetSurvey = () => {
+        setResetKey(prev => prev + 1)
+        setProgress(0)
+    }
 
     return (
-        <DashboardContext.Provider value={{ progress, setProgress, sidebarOpen, setSidebarOpen }}>
+        <DashboardContext.Provider value={{ progress, setProgress, sidebarOpen, setSidebarOpen, resetKey, resetSurvey }}>
             <div className="dashboard-root">
                 <Navbar progress={progress} />
                 <div className="dashboard-main-container">
