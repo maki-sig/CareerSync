@@ -16,7 +16,7 @@ const plusJakarta = Plus_Jakarta_Sans({
 
 export const metadata: Metadata = {
   title: { template: 'CareerSync - %s', default: 'CareerSync' },
-  description: "v1.0.5",
+  description: "v1.1.0",
   icons: {
     icon: "/favicon.png",
   },

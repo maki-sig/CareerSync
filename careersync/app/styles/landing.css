@@ -1,0 +1,254 @@
+/* ── HERO ── */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 140px 24px 100px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: radial-gradient(ellipse 70% 45% at 50% 0%, rgba(99, 102, 241, 0.15) 0%, transparent 65%);
+}
+
+.hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(99, 102, 241, 0.12) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(99, 102, 241, 0.12) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 25%, black 20%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 25%, black 20%, transparent 75%);
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(99, 102, 241, 0.08);
+    border: 1px solid rgba(99, 102, 241, 0.22);
+    padding: 5px 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 400;
+    color: var(--primary-btn-border);
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 1;
+    animation: fadeUp 0.5s ease both;
+    letter-spacing: 0.02em;
+}
+
+.hero h1 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: clamp(2.6rem, 6vw, 4.6rem);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    color: var(--text-main);
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+    animation: fadeUp 0.5s 0.1s ease both;
+}
+
+.hero h1 span {
+    background: linear-gradient(90deg, var(--primary-hover-border) 0%, var(--primary-btn-border) 50%, var(--primary-active-border) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--text-sub);
+    max-width: 440px;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 1;
+    animation: fadeUp 0.5s 0.2s ease both;
+    font-weight: 400;
+    line-height: 1.9;
+    letter-spacing: 0.01em;
+}
+
+.hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    animation: fadeUp 0.5s 0.3s ease both;
+}
+
+/* ── HERO BUTTONS ── */
+.hero-actions .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 28px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-decoration: none;
+    border: 1px solid var(--primary-btn-border);
+    background: var(--primary-btn-bg);
+    color: var(--primary-btn-txt);
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
+}
+
+.hero-actions .btn-primary:hover {
+    background: var(--primary-hover-bg);
+    border-color: var(--primary-hover-border);
+    color: var(--primary-hover-txt);
+}
+
+.hero-actions .btn-primary:active {
+    background: var(--primary-active-bg);
+    border-color: var(--primary-active-border);
+    color: var(--primary-active-txt);
+    transform: translateY(0);
+}
+
+.hero-actions .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 28px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    border: 1px solid var(--secondary-border);
+    background: var(--secondary-bg);
+    color: var(--secondary-txt);
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
+}
+
+.hero-actions .btn-ghost:hover {
+    background: var(--secondary-hover-bg);
+    border-color: var(--secondary-hover-border);
+    color: var(--secondary-hover-txt);
+}
+
+.hero-actions .btn-ghost:active {
+    background: var(--secondary-active-bg);
+    border-color: var(--secondary-active-border);
+    color: var(--secondary-active-txt);
+    transform: translateY(0);
+}
+
+/* ── HERO STATS ── */
+.hero-stats {
+    display: flex;
+    margin-top: 52px;
+    position: relative;
+    z-index: 1;
+    animation: fadeUp 0.5s 0.42s ease both;
+    border: 1px solid var(--card-border);
+    overflow: hidden;
+    background: var(--card-bg);
+}
+
+.hstat {
+    padding: 20px 40px;
+    text-align: center;
+    border-right: 1px solid var(--card-border);
+    flex: 1;
+}
+
+.hstat:last-child {
+    border-right: none;
+}
+
+.hstat-val {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.55rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--primary-hover-border) 0%, var(--primary-btn-border) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    margin-bottom: 5px;
+}
+
+.hstat-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--text-sub);
+    letter-spacing: 0.02em;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.35;
+    }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+    .hero {
+        padding: 120px 20px 80px;
+    }
+
+    .hero-stats {
+        flex-direction: column;
+        width: 100%;
+        max-width: 320px;
+    }
+
+    .hstat {
+        border-right: none;
+        border-bottom: 1px solid var(--card-border);
+    }
+
+    .hstat:last-child {
+        border-bottom: none;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        width: 100%;
+        max-width: 320px;
+    }
+
+    .hero-actions .btn-primary,
+    .hero-actions .btn-ghost {
+        width: 100%;
+        justify-content: center;
+    }
+}

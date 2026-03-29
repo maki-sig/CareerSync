@@ -8,6 +8,7 @@ import Loginicon from "@/public/login.svg"
 import EyeIcon from "@/public/eye.svg"
 import EyeOffIcon from "@/public/eye-off.svg"
 import { createClient } from "@/utils/supabase/client";
+import Nav from "../components/navbar"
 
 /* ── Helpers ────────────────────────────────────────────── */
 async function hashPassword(password: string): Promise<string> {
@@ -335,7 +336,7 @@ export default function Portal() {
 
     return (
         <>
-
+            <Nav />
             <section className="login-signup-section">
                 {view === "login"
                     ? <LoginForm onSwitch={() => setView("signup")} />
