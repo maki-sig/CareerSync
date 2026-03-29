@@ -198,7 +198,7 @@ export default function FormsClient() {
                             Information Technology
                         </button>
                         <a href="https://github.com/maki-sig" target="blank">
-                            <span className="caption-txt">HelloKinaban @ Github && Tiktok || Marc Botis</span>
+                            <span className="caption-txt">// @HelloKinaban on Github and TikTok</span>
                         </a>
                     </div>
                 </section>

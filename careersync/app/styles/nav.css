@@ -160,7 +160,7 @@
 
 @media (min-width: 768px) {
     .side-bar {
-        padding: 32px 32px;
+        padding: 25px;
         /* Optimized 32px desktop side padding */
     }
 }

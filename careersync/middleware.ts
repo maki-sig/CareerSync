@@ -23,8 +23,8 @@ export default async function middleware(request: NextRequest) {
     );
 
     // Refresh auth token
-    await supabase.auth.getUser(); 
-    
+    await supabase.auth.getUser();
+
     // ── Auth Logic ───────────────────────────────────────────
     const userID = request.cookies.get("careersync_user_id")?.value;
     const isDashboard = pathname.startsWith("/dashboard");
@@ -51,7 +51,7 @@ export default async function middleware(request: NextRequest) {
 
     // 3. RESULTS PROTECTION: Ensure user submitted survey before viewing fresh results
     // We allow access if it's a specific historical result (has an ID in pathname) OR if it's a fresh submission (has submitted cookie)
-    const isResultsPage = pathname.startsWith("/dashboard/results") || pathname.startsWith("/results");
+    const isResultsPage = pathname.startsWith("/dashboard/results");
     const isSpecificResult = pathname.split("/").length > 3; // e.g., /dashboard/results/[id]
 
     if (isResultsPage && !isSpecificResult) {
