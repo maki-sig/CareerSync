@@ -13,7 +13,7 @@ export default function Landing() {
         const userID = userCookie?.split("=")[1]
 
         if (userID) {
-            router.push("/dashboard")
+            router.push("/dashboard/forms")
         } else {
             router.push("/portal")
         }

@@ -154,6 +154,7 @@ export default function FormsClient() {
                     JSON.stringify({ error: isQuota ? "quota_exceeded" : "api_error" })
                 )
                 sessionStorage.setItem("careersync_data", JSON.stringify(formData))
+                document.cookie = "careersync_submitted=true; path=/"
                 router.push("/dashboard/results")
                 return
             }
@@ -162,6 +163,7 @@ export default function FormsClient() {
             const parsed = JSON.parse(text)
             sessionStorage.setItem("careersync_results", JSON.stringify(parsed))
             sessionStorage.setItem("careersync_data", JSON.stringify(formData))
+            document.cookie = "careersync_submitted=true; path=/"
             router.push("/dashboard/results")
 
         } catch (err) {
@@ -171,6 +173,7 @@ export default function FormsClient() {
                 JSON.stringify({ error: "api_error" })
             )
             sessionStorage.setItem("careersync_data", JSON.stringify(formData))
+            document.cookie = "careersync_submitted=true; path=/"
             router.push("/dashboard/results")
         }
     }

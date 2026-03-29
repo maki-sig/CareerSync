@@ -11,13 +11,13 @@
     align-self: stretch;
     justify-content: center;
     gap: 20px;
-    padding: 20px; /* Uniform mobile padding */
+    padding: 20px 16px; /* Standardize 16px mobile side padding */
 }
 
 @media (min-width: 768px) {
     .login-signup-section {
         gap: 40px;
-        padding: 40px; /* Uniform desktop/tablet padding */
+        padding: 40px 32px; /* Standardize 32px desktop side padding */
     }
 }
 

@@ -11,26 +11,19 @@
     flex: 1;
     margin: 0;
     row-gap: 20px;
-    padding: 20px 16px 32px;
-}
-
-@media (min-width: 480px) {
-    .program-section {
-        row-gap: 28px;
-        padding: 40px 32px 40px;
-    }
+    padding: 20px 16px 32px; /* Standardize mobile side padding */
 }
 
 @media (min-width: 768px) {
     .program-section {
         row-gap: 35px;
-        padding: 50px 20px 20px;
+        padding: 50px 32px 32px; /* Standardize 32px desktop side padding */
     }
 }
 
 @media (min-width: 1024px) {
     .program-section {
-        padding: 60px 100px 50px;
+        padding: 60px 48px 50px; /* Limit overly wide stretch but keep uniform flow */
         height: 90vh;
     }
 }
@@ -212,40 +205,27 @@ CSicon {
     flex: 1;
     align-self: stretch;
     gap: 20px;
-    padding: 20px 16px 32px;
+    padding: 20px 16px 32px; /* Optimized 16px mobile side padding */
     justify-content: center;
     min-height: 100%; /* Ensure full height for vertical centering and scrolling */
 }
 
-@media (min-width: 480px) {
-
-    .workstyle-section,
-    .subjects-section,
-    .softskills-section,
-    .hobbies-section {
-        gap: 28px;
-        padding: 40px 32px 40px;
-    }
-}
-
 @media (min-width: 768px) {
-
     .workstyle-section,
     .subjects-section,
     .softskills-section,
     .hobbies-section {
         gap: 35px;
-        padding: 50px 20px 20px;
+        padding: 40px 32px 32px; /* Optimized 32px desktop side padding */
     }
 }
 
 @media (min-width: 1024px) {
-
     .workstyle-section,
     .subjects-section,
     .softskills-section,
     .hobbies-section {
-        padding: 60px 100px 50px;
+        padding: 60px 48px 50px;
         height: 90vh;
     }
 }

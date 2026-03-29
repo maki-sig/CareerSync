@@ -5,14 +5,14 @@
     flex: 1;
     align-self: stretch;
     gap: 20px;
-    padding: 20px 16px; /* Reduced for mobile */
+    padding: 20px 16px; /* Standardize 16px mobile side padding */
     justify-content: flex-start; /* Better for long content on mobile */
 }
 
 @media (min-width: 768px) {
     .results-section {
         gap: 40px; /* Matched to padding */
-        padding: 40px;
+        padding: 40px 32px; /* Standardize 32px desktop side padding */
         justify-content: center;
     }
 }

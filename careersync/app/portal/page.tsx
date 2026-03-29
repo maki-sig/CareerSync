@@ -253,7 +253,8 @@ export function SignupForm({ onSwitch }: { onSwitch: () => void }) {
             document.cookie = `careersync_user_id=${newUser.userID}; path=/; max-age=${60 * 60 * 24 * 7}`;
         }
 
-        router.push("/");
+        // Redirect directly to the forms survey after successful signup
+        router.push("/dashboard/forms");
     }
 
     return (

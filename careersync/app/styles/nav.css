@@ -32,7 +32,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 8px 25px; /* Synchronized side padding */
+    padding: 8px 16px; /* Optimized 16px mobile side padding */
     /* compact on mobile */
     align-self: stretch;
 
@@ -43,7 +43,7 @@
 
 @media (min-width: 768px) {
     .nav-bar {
-        padding: 10px 25px;
+        padding: 10px 32px; /* Optimized 32px desktop side padding */
     }
 }
 
@@ -51,7 +51,6 @@
     .nav-bar {
         height: 64px;
         /* Fixed desktop height */
-        padding: 10px 25px;
     }
 }
 
@@ -149,11 +148,17 @@
     flex-direction: column;
     justify-content: space-between;
     gap: 32px;
-    padding: 25px;
+    padding: 25px 16px; /* Optimized 16px mobile side padding */
     overflow-y: auto;
 
     transform: translateX(-100%);
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (min-width: 768px) {
+    .side-bar {
+        padding: 32px 32px; /* Optimized 32px desktop side padding */
+    }
 }
 
 .side-bar.is-open {
@@ -164,7 +169,7 @@
     .side-bar {
         transform: translateX(0);
     }
-    
+
     .drawer-desktop .side-bar {
         transform: translateX(-100%);
     }
@@ -198,10 +203,12 @@
     .sidebar-overlay {
         display: none;
     }
-    
+
     .drawer-desktop .sidebar-overlay {
-        display: block; /* Restore overlay visibility for desktop drawer */
-        position: fixed; /* Overlay should cover everything */
+        display: block;
+        /* Restore overlay visibility for desktop drawer */
+        position: fixed;
+        /* Overlay should cover everything */
         top: 0;
         left: 0;
         width: 100vw;
@@ -221,9 +228,10 @@
     .dashboard-content {
         margin-left: 250px;
     }
-    
+
     .drawer-desktop .dashboard-content {
-        margin-left: 0; /* Remove offset in drawer mode */
+        margin-left: 0;
+        /* Remove offset in drawer mode */
     }
 }
 
@@ -290,9 +298,10 @@
     .menu-toggle {
         display: none;
     }
-    
+
     .drawer-desktop .menu-toggle {
-        display: flex; /* Show menu on desktop if in drawer mode */
+        display: flex;
+        /* Show menu on desktop if in drawer mode */
     }
 }
 
