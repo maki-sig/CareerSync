@@ -15,6 +15,18 @@
     transition: background-color 0.15s ease, opacity 0.15s ease;
 }
 
+.program-toggle-div:hover {
+    background-color: var(--secondary-hover-bg);
+    border-color: var(--secondary-hover-border);
+    color: var(--secondary-hover-txt);
+}
+
+.program-toggle-div:active {
+    background-color: var(--secondary-active-bg);
+    border-color: var(--secondary-active-border);
+    color: var(--secondary-active-txt);
+}
+
 @media (min-width: 768px) {
     .program-toggle-div {
         width: 40px;

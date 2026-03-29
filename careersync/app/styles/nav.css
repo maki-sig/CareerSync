@@ -32,7 +32,8 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 8px 16px; /* Optimized 16px mobile side padding */
+    padding: 8px 16px;
+    /* Optimized 16px mobile side padding */
     /* compact on mobile */
     align-self: stretch;
 
@@ -43,7 +44,8 @@
 
 @media (min-width: 768px) {
     .nav-bar {
-        padding: 10px 32px; /* Optimized 32px desktop side padding */
+        padding: 10px 32px;
+        /* Optimized 32px desktop side padding */
     }
 }
 
@@ -148,7 +150,8 @@
     flex-direction: column;
     justify-content: space-between;
     gap: 32px;
-    padding: 25px 16px; /* Optimized 16px mobile side padding */
+    padding: 25px 16px;
+    /* Optimized 16px mobile side padding */
     overflow-y: auto;
 
     transform: translateX(-100%);
@@ -157,7 +160,8 @@
 
 @media (min-width: 768px) {
     .side-bar {
-        padding: 32px 32px; /* Optimized 32px desktop side padding */
+        padding: 32px 32px;
+        /* Optimized 32px desktop side padding */
     }
 }
 
@@ -273,7 +277,12 @@
 
 .reset-btn:hover {
     background-color: var(--danger-hover-bg);
-    opacity: 0.9;
+    border-color: var(--danger-hover-border);
+}
+
+.reset-btn:active {
+    background-color: var(--danger-active-bg);
+    border-color: var(--danger-active-border);
 }
 
 .reset-btn svg {
