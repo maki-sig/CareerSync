@@ -100,7 +100,7 @@ export default function Results() {
                     </div>
 
                     <div className="path-card">
-                        <span className="option-txt sub-label">How to Become {data.role}</span>
+                        <span className="option-txt sub-label">{data.role} - Path Guide</span>
                         {(data.careerPath ?? []).map((step, i) => (
                             <span key={i} className="caption-txt">
                                 <span className="caption-txt">{String(i + 1).padStart(2, "0")}. </span>

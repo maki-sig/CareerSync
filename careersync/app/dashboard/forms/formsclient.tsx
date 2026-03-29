@@ -184,7 +184,7 @@ export default function FormsClient() {
             {/* ── PAGE 1: Program Selection (Landing) ── */}
             {page === 1 && (
                 <section className="program-section">
-                    <h1 className="title-txt">CareerSync</h1>
+                    <h1 className="title-txt">Let's Start Syncing</h1>
                     <span className="desc option-txt">Answer this form to get an AI-driven career recommendation that aligns with who you are.<br />Powered by Gemini.</span>
 
                     <div className="program-card">
