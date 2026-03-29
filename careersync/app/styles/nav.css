@@ -51,9 +51,8 @@
 }
 
 .nav-bar svg path {
-    color: var(--primary-btn-bg);
+    color: var(--primary-btn-border);
     fill: currentColor;
-    stroke: var(--primary-btn-border);
     stroke-width: 1px;
     vector-effect: non-scaling-stroke;
 }
@@ -126,35 +125,37 @@
 /* ── Sidebar ────────────────────────────────────────────── */
 .side-bar {
     width: 250px;
-    height: calc(100vh - 41px);
-    /* Viewport - Mobile header height (8+8+24+1) */
-    position: sticky;
-    top: 41px;
+    height: calc(100vh - 51px);
+    /* Updated for snugness */
+    position: fixed;
+    top: 51px;
+    left: 0;
+    z-index: 500;
+    /* Ensure it's behind navbar (1000) but above content */
     flex-shrink: 0;
 
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    gap: 32px;
+    gap: 25px;
     padding: 25px;
 
     background-color: var(--card-bg);
     border-right: 1px solid var(--card-border);
+    overflow-y: auto;
 }
 
 @media (min-width: 480px) {
     .side-bar {
-        top: 43px;
-        /* 9+9+24+1 */
-        height: calc(100vh - 43px);
+        top: 53px;
+        height: calc(100vh - 53px);
     }
 }
 
 @media (min-width: 768px) {
     .side-bar {
-        top: 45px;
-        /* 10+10+24+1 */
-        height: calc(100vh - 45px);
+        top: 57px;
+        height: calc(100vh - 57px);
     }
 }
 

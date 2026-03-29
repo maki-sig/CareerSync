@@ -46,7 +46,7 @@ export default function Dashboard() {
                         <span className="option-txt">Your career recommendations</span>
                     </div>
 
-                    <button className="submit-btn btn-txt">Sync with a Career</button>
+
                 </section>
             </main>
 
