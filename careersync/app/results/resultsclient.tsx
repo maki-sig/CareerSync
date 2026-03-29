@@ -128,7 +128,7 @@ export default function Results() {
                         Retry
                     </button>
                     <button className="submit-btn btn-txt" onClick={handlePrint}>
-                        Print
+                        Save as PDF
                     </button>
                 </div>
             </div>

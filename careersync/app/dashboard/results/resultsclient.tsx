@@ -24,7 +24,7 @@ export default function Results() {
     const router = useRouter()
     const params = useParams()
     const careerID = params?.id as string
-    
+
     const { setProgress } = useProgress()
     const [data, setData] = useState<ResultsData | null>(null)
     const [loading, setLoading] = useState(true)
@@ -32,11 +32,11 @@ export default function Results() {
     useEffect(() => {
         // Set progress to max on results page
         setProgress(100)
-        
+
         async function loadData() {
             setLoading(true)
             const supabase = createClient()
-            
+
             // 1. If we have a careerID, fetch from Supabase
             if (careerID) {
                 const { data: dbData, error } = await supabase
@@ -186,7 +186,7 @@ export default function Results() {
                 </button>
                 <button className="submit-btn btn-txt" style={{ display: "flex", alignItems: "center", gap: "10px" }} onClick={handlePrint}>
                     <PrintIcon style={{ width: "20px", height: "20px" }} />
-                    Print
+                    Save as PDF
                 </button>
             </div>
         </div>
