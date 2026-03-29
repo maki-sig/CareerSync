@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation"
 
 import Nav from "@/app/components/navbar"
 
-export default function Landing() {
+export default function LandingClient() {
     const router = useRouter()
 
     const scrollToSection = (id: string) => {
