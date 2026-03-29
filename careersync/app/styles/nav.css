@@ -247,9 +247,9 @@
     background: transparent;
     border: none;
     cursor: pointer;
-    padding: 8px;
+    padding: 0;
     color: var(--text-main);
-    width: 36px;
+    width: 24px;
     height: 36px;
     transition: opacity 0.15s ease;
 }
