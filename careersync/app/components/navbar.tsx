@@ -3,30 +3,29 @@
 import { useRouter } from "next/navigation"
 import "../styles/nav.css"
 import Spark from "@/public/gemini.svg"
+import ToggleTheme from "./themetoggle"
 
-export default function Navbar() {
+interface NavbarProps {
+    progress?: number // 0 to 100
+}
+
+export default function Navbar({ progress = 0 }: NavbarProps) {
     const router = useRouter()
-
-    const handleLogout = () => {
-        // Clear session cookies
-        document.cookie = "careersync_user_id=; path=/; max-age=0";
-        document.cookie = "careersync_submitted=; path=/; max-age=0";
-
-        // Redirect home or to login
-        router.push("/")
-    }
 
     return (
         <div className="head-grp">
 
             <div className="nav-bar">
                 <Spark />
-                <button className="btn-txt" onClick={handleLogout}>Logout</button>
+                <ToggleTheme />
             </div>
 
-            {/* divider line matching header style but no progress logic */}
+            {/* divider line with optional progress */}
             <div className="progress-bar-track">
-                <div className="progress-bar-fill" style={{ width: "0%" }} />
+                <div 
+                    className="progress-bar-fill" 
+                    style={{ width: `${progress}%` }} 
+                />
             </div>
 
         </div>

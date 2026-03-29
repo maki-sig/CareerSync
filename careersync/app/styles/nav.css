@@ -57,8 +57,8 @@
     vector-effect: non-scaling-stroke;
 }
 
-/* ── Nav bar — button ───────────────────────────────────── */
-.nav-bar button {
+/* ── Logout button ──────────────────────────────────────── */
+.logout-btn {
     /* layout */
     display: flex;
     padding: 8px 16px;
@@ -79,24 +79,24 @@
 }
 
 @media (min-width: 480px) {
-    .nav-bar button {
+    .logout-btn {
         padding: 9px 20px;
     }
 }
 
 @media (min-width: 768px) {
-    .nav-bar button {
+    .logout-btn {
         padding: 10px 25px;
     }
 }
 
-.nav-bar button:hover {
+.logout-btn:hover {
     background-color: var(--danger-hover-bg);
     border-color: var(--danger-hover-border);
     color: var(--danger-hover-txt);
 }
 
-.nav-bar button:active {
+.logout-btn:active {
     background-color: var(--danger-active-bg);
     border-color: var(--danger-active-border);
     color: var(--danger-active-txt);
@@ -104,7 +104,7 @@
 
 /* honour users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
-    .nav-bar button {
+    .logout-btn {
         transition: none;
     }
 }
@@ -125,10 +125,10 @@
 /* ── Sidebar ────────────────────────────────────────────── */
 .side-bar {
     width: 250px;
-    height: calc(100vh - 51px);
+    height: calc(100vh - 64px);
     /* Updated for snugness */
     position: fixed;
-    top: 51px;
+    top: 64px;
     left: 0;
     z-index: 500;
     /* Ensure it's behind navbar (1000) but above content */
@@ -136,8 +136,8 @@
 
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    gap: 25px;
+    justify-content: space-between;
+    gap: 32px;
     padding: 25px;
 
     background-color: var(--card-bg);
@@ -145,17 +145,27 @@
     overflow-y: auto;
 }
 
+.side-bar-top {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.logout-btn {
+    margin-top: auto;
+}
+
 @media (min-width: 480px) {
     .side-bar {
-        top: 53px;
-        height: calc(100vh - 53px);
+        top: 64px;
+        height: calc(100vh - 64px);
     }
 }
 
 @media (min-width: 768px) {
     .side-bar {
-        top: 57px;
-        height: calc(100vh - 57px);
+        top: 64px;
+        height: calc(100vh - 64px);
     }
 }
 
@@ -166,4 +176,76 @@
 
 .side-bar span:hover {
     color: var(--primary-btn-border);
+}
+
+/* ── Buttons (Shared) ────────────────────────────────────── */
+.secondary-btn,
+.submit-btn {
+    display: flex;
+    padding: 8px 16px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+@media (min-width: 480px) {
+
+    .secondary-btn,
+    .submit-btn {
+        padding: 9px 20px;
+    }
+}
+
+@media (min-width: 768px) {
+
+    .secondary-btn,
+    .submit-btn {
+        padding: 10px 25px;
+    }
+}
+
+.secondary-btn {
+    background-color: var(--secondary-bg);
+    border: 1px solid var(--secondary-border);
+    color: var(--secondary-txt);
+}
+
+.secondary-btn:hover {
+    background-color: var(--secondary-hover-bg);
+    border-color: var(--secondary-hover-border);
+    color: var(--secondary-hover-txt);
+}
+
+.secondary-btn:active {
+    background-color: var(--secondary-active-bg);
+    border-color: var(--secondary-active-border);
+    color: var(--secondary-active-txt);
+}
+
+.submit-btn {
+    background-color: var(--primary-btn-bg);
+    border: 1px solid var(--primary-btn-border);
+    color: var(--primary-btn-txt);
+}
+
+.submit-btn:hover {
+    background-color: var(--primary-hover-bg);
+    border-color: var(--primary-hover-border);
+    color: var(--primary-hover-txt);
+}
+
+.submit-btn:active {
+    background-color: var(--primary-active-bg);
+    border-color: var(--primary-active-border);
+    color: var(--primary-active-txt);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .secondary-btn,
+    .submit-btn {
+        transition: none;
+    }
 }

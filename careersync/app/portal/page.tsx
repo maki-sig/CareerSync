@@ -129,7 +129,7 @@ export function LoginForm({ onSwitch }: { onSwitch: () => void }) {
             .eq("userID", user.userID);
 
         document.cookie = `careersync_user_id=${user.userID}; path=/; max-age=${60 * 60 * 24 * 7}`; // 1 week session
-        router.push("/forms");
+        router.push("/dashboard/forms");
     }
 
     return (

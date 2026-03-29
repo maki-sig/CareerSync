@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import Spark from "@/public/gemini.svg"
+import Header from "../components/header"
 import "../styles/results.css"
 
 
@@ -48,7 +49,7 @@ export default function Results() {
     if (data.error === "quota_exceeded") {
         return (
             <>
-
+                <Header page={5} totalPages={5} onRestart={handleRestart} />
                 <div className="results-section">
                     <Spark />
                     <h1 className="title-txt">Service Unavailable</h1>
@@ -65,7 +66,7 @@ export default function Results() {
     if (data.error === "api_error") {
         return (
             <>
-
+                <Header page={5} totalPages={5} onRestart={handleRestart} />
                 <div className="results-section">
                     <Spark />
                     <h1 className="title-txt">Something Went Wrong</h1>
@@ -81,7 +82,7 @@ export default function Results() {
 
     return (
         <>
-
+            <Header page={5} totalPages={5} onRestart={handleRestart} />
             <div className="results-section">
                 <Spark />
                 <div className="results-row">
