@@ -11,26 +11,26 @@
     flex: 1;
     margin: 0;
     row-gap: 20px;
-    padding: 0 16px 32px;
+    padding: 20px 16px 32px;
 }
 
 @media (min-width: 480px) {
     .program-section {
         row-gap: 28px;
-        padding: 0 32px 40px;
+        padding: 40px 32px 40px;
     }
 }
 
 @media (min-width: 768px) {
     .program-section {
         row-gap: 35px;
-        padding: 0 20px 20px;
+        padding: 50px 20px 20px;
     }
 }
 
 @media (min-width: 1024px) {
     .program-section {
-        padding: 0 100px 50px;
+        padding: 60px 100px 50px;
     }
 }
 
@@ -206,7 +206,7 @@ CSicon {
     flex: 1;
     align-self: stretch;
     gap: 20px;
-    padding: 0 16px 32px;
+    padding: 20px 16px 32px;
     justify-content: center;
 }
 
@@ -216,7 +216,7 @@ CSicon {
     .softskills-section,
     .hobbies-section {
         gap: 28px;
-        padding: 0 32px 40px;
+        padding: 40px 32px 40px;
         justify-content: start;
     }
 }
@@ -227,7 +227,7 @@ CSicon {
     .softskills-section,
     .hobbies-section {
         gap: 35px;
-        padding: 0 20px 20px;
+        padding: 50px 20px 20px;
     }
 }
 
@@ -236,7 +236,7 @@ CSicon {
     .subjects-section,
     .softskills-section,
     .hobbies-section {
-        padding: 0 100px 50px;
+        padding: 60px 100px 50px;
     }
 }
 

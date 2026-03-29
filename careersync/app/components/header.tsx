@@ -1,7 +1,7 @@
 "use client"
 
 import { useRouter } from "next/navigation"
-import ThemeToggle from "./themetoggle"
+
 import "../styles/nav.css"
 import Spark from "@/public/gemini.svg"
 
@@ -38,7 +38,7 @@ export default function Header({ page = 1, totalPages = 4, onRestart }: HeaderPr
                 />
             </div>
 
-            <ThemeToggle />
+
 
         </div>
     )

@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import Header from "../components/header"
-import ThemeToggle from "../components/themetoggle"
+
 import CSicon from "@/public/cs.svg"
 import ITicon from "@/public/it.svg"
 import "../styles/forms.css"
@@ -174,8 +174,7 @@ export default function Forms() {
 
     return (
         <>
-            {page === 1 && <ThemeToggle />}
-            {page !== 1 && <Header page={page - 1} totalPages={4} onRestart={handleRestart} />}
+            <Header page={page} totalPages={5} onRestart={handleRestart} />
 
             <form className="forms">
 

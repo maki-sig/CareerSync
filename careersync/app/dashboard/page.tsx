@@ -1,5 +1,5 @@
 import "../styles/dashboard.css"
-import ThemeToggle from "../components/themetoggle"
+
 import Nav from "../components/navbar"
 import Side from "../components/sidebar"
 

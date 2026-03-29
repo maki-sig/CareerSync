@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import ThemeToggle from "../components/themetoggle";
+
 import "../styles/login.css"
 import Loginicon from "@/public/login.svg"
 import EyeIcon from "@/public/eye.svg"
@@ -329,7 +329,7 @@ export default function Portal() {
 
     return (
         <>
-            <ThemeToggle />
+
             <section className="login-signup-section">
                 {view === "login"
                     ? <LoginForm onSwitch={() => setView("signup")} />

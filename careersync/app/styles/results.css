@@ -20,7 +20,7 @@
     flex: 1;
     align-self: stretch;
     gap: 20px;
-    padding: 0 16px 32px;
+    padding: 20px 16px 32px;
     justify-content: center;
 }
 
@@ -30,15 +30,15 @@
 }
 
 @media (min-width: 480px) {
-    .results-section { gap: 28px; padding: 0 32px 40px; }
+    .results-section { gap: 28px; padding: 40px 32px 40px; }
 }
 
 @media (min-width: 768px) {
-    .results-section { gap: 35px; padding: 0 20px 20px; }
+    .results-section { gap: 35px; padding: 50px 20px 20px; }
 }
 
 @media (min-width: 1024px) {
-    .results-section { padding: 0 100px 50px; }
+    .results-section { padding: 60px 100px 50px; }
 }
 
 /* ── Cards base ─────────────────────────────────────────── */

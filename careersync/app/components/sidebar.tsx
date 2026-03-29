@@ -1,4 +1,4 @@
-import "../styles/dashnav.css"
+import "../styles/nav.css"
 
 export default function Sidebar() {
     return (
