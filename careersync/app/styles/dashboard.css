@@ -1,8 +1,8 @@
 .dashboard-main {
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start;
+    justify-content: flex-start;
     flex: 1;
     margin: 0;
     gap: 0;
