@@ -164,6 +164,14 @@
     .side-bar {
         transform: translateX(0);
     }
+    
+    .drawer-desktop .side-bar {
+        transform: translateX(-100%);
+    }
+
+    .drawer-desktop .side-bar.is-open {
+        transform: translateX(0);
+    }
 }
 
 /* ── Overlay ────────────────────────────────────────────── */
@@ -190,6 +198,15 @@
     .sidebar-overlay {
         display: none;
     }
+    
+    .drawer-desktop .sidebar-overlay {
+        display: block; /* Restore overlay visibility for desktop drawer */
+        position: fixed; /* Overlay should cover everything */
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+    }
 }
 
 /* ── Dashboard Content Offset ──────────────────────────── */
@@ -203,6 +220,10 @@
 @media (min-width: 1024px) {
     .dashboard-content {
         margin-left: 250px;
+    }
+    
+    .drawer-desktop .dashboard-content {
+        margin-left: 0; /* Remove offset in drawer mode */
     }
 }
 
@@ -268,6 +289,10 @@
 @media (min-width: 1024px) {
     .menu-toggle {
         display: none;
+    }
+    
+    .drawer-desktop .menu-toggle {
+        display: flex; /* Show menu on desktop if in drawer mode */
     }
 }
 

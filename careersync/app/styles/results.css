@@ -118,6 +118,16 @@
     /* margin-top removed to rely on section gap */
 }
 
+.submit-btn svg path {
+    color: var(--primary-btn-txt);
+    fill: currentColor;
+}
+
+.secondary-btn svg path {
+    color: var(--secondary-txt);
+    fill: currentColor;
+}
+
 @media (min-width: 768px) {
     .btn-row {
         gap: 32px;
@@ -129,7 +139,56 @@
     .results-section > svg,
     header,
     nav,
+    .nav-bar,
+    .side-bar,
+    .sidebar-overlay,
+    .head-grp,
+    .menu-toggle,
+    .reset-btn,
+    .program-toggle-div,
     svg {
+        display: none !important;
+        border: none !important;
+    }
+
+    body, 
+    .dashboard-root, 
+    .dashboard-main-container, 
+    .dashboard-content, 
+    .results-section {
+        background-color: #fff !important;
+        color: #000 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        height: auto !important;
+        overflow: visible !important;
+    }
+
+    .results-section {
+        padding-top: 50px !important; /* Move contents down */
+    }
+
+    .results-card,
+    .path-card,
+    .key-card {
+        border: none !important;
+        border-bottom: 1px solid #ddd !important; /* Divider line */
+        background-color: transparent !important;
+        padding: 0 0 20px 0 !important;
+        margin-bottom: 30px !important;
+        box-shadow: none !important;
+    }
+
+    .title-txt,
+    .question-txt,
+    .option-txt,
+    .caption-txt,
+    .category-txt,
+    .confidence {
+        color: #000 !important;
+    }
+
+    .confidence-track {
         display: none !important;
     }
 }

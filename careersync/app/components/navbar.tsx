@@ -20,7 +20,7 @@ function MenuIcon() {
 }
 
 export default function Navbar({ progress = 0 }: NavbarProps) {
-    const { setSidebarOpen, resetSurvey } = useDashboard()
+    const { sidebarOpen, setSidebarOpen, resetSurvey } = useDashboard()
     const router = useRouter()
     const pathname = usePathname()
     const isFormsPage = pathname?.includes("/dashboard/forms")
@@ -45,7 +45,7 @@ export default function Navbar({ progress = 0 }: NavbarProps) {
 
             <div className="nav-bar">
                 <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                    <button className="menu-toggle" onClick={() => setSidebarOpen(true)} aria-label="Open menu">
+                    <button className="menu-toggle" onClick={() => setSidebarOpen(!sidebarOpen)} aria-label="Toggle menu">
                         <MenuIcon />
                     </button>
                     <Spark />

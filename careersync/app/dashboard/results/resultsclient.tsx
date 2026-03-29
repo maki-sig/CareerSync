@@ -5,6 +5,7 @@ import { useRouter, useParams } from "next/navigation"
 import { useProgress } from "../layout"
 import { createClient } from "@/utils/supabase/client"
 import Loading from "@/app/loading"
+import PrintIcon from "@/public/print.svg"
 import "../../styles/results.css"
 
 interface ResultsData {
@@ -183,7 +184,8 @@ export default function Results() {
                 <button className="secondary-btn btn-txt" onClick={careerID ? handleBack : handleRestart}>
                     {careerID ? "Back" : "Retry"}
                 </button>
-                <button className="submit-btn btn-txt" onClick={handlePrint}>
+                <button className="submit-btn btn-txt" style={{ display: "flex", alignItems: "center", gap: "10px" }} onClick={handlePrint}>
+                    <PrintIcon style={{ width: "20px", height: "20px" }} />
                     Print
                 </button>
             </div>

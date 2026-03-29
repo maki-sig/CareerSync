@@ -1,6 +1,7 @@
 "use client"
 
 import { createContext, useContext, useState } from "react"
+import { usePathname } from "next/navigation"
 import Navbar from "../components/navbar"
 import Sidebar from "../components/sidebar"
 
@@ -31,6 +32,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     const [progress, setProgress] = useState(0)
     const [sidebarOpen, setSidebarOpen] = useState(false)
     const [resetKey, setResetKey] = useState(0)
+    
+    const pathname = usePathname()
+    const isFormsPage = pathname?.includes("/dashboard/forms")
 
     const resetSurvey = () => {
         setResetKey(prev => prev + 1)
@@ -39,13 +43,17 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
     return (
         <DashboardContext.Provider value={{ progress, setProgress, sidebarOpen, setSidebarOpen, resetKey, resetSurvey }}>
-            <div className="dashboard-root">
+            <div className={`dashboard-root ${isFormsPage ? "drawer-desktop" : ""}`}>
                 <Navbar progress={progress} />
                 <div className="dashboard-main-container">
                     <Sidebar />
-                    {/* Dark overlay for mobile drawer */}
+                    {/* Dark overlay for drawer (now handles desktop for forms) */}
                     <div 
                         className={`sidebar-overlay ${sidebarOpen ? "is-active" : ""}`}
+                        style={{ 
+                            display: isFormsPage ? "block" : undefined,
+                            pointerEvents: sidebarOpen ? "auto" : "none"
+                        }}
                         onClick={() => setSidebarOpen(false)}
                     />
                     <main className="dashboard-content">
