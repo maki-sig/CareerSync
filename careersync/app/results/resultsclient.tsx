@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
-import Spark from "@/public/gemini.svg"
-import Header from "../components/header"
+// import Spark from "@/public/gemini.svg"
+// import Header from "../components/header"
 import "../styles/results.css"
 
 
@@ -49,9 +49,8 @@ export default function Results() {
     if (data.error === "quota_exceeded") {
         return (
             <>
-                <Header page={5} totalPages={5} onRestart={handleRestart} />
+                {/* <Header page={5} totalPages={5} onRestart={handleRestart} /> */}
                 <div className="results-section">
-                    <Spark />
                     <h1 className="title-txt">Service Unavailable</h1>
                     <div className="results-card error-card">
                         <span className="option-txt">We've temporarily hit our API limit. Please try again in a few minutes.</span>
@@ -66,9 +65,8 @@ export default function Results() {
     if (data.error === "api_error") {
         return (
             <>
-                <Header page={5} totalPages={5} onRestart={handleRestart} />
+                {/* <Header page={5} totalPages={5} onRestart={handleRestart} /> */}
                 <div className="results-section">
-                    <Spark />
                     <h1 className="title-txt">Something Went Wrong</h1>
                     <div className="results-card error-card">
                         <span className="option-txt">We ran into an unexpected error while analyzing your results.</span>
@@ -82,13 +80,12 @@ export default function Results() {
 
     return (
         <>
-            <Header page={5} totalPages={5} onRestart={handleRestart} />
+            {/* <Header page={5} totalPages={5} onRestart={handleRestart} /> */}
             <div className="results-section">
-                <Spark />
                 <div className="results-row">
 
                     <div className="results-card">
-                        <h1 className="question-txt">You are {data.role}</h1>
+                        <h1 className="question-txt">You synced with {data.role}</h1>
                         {data.salaryMin && data.salaryMax && (
                             <span className="caption-txt">
                                 PHP {data.salaryMin.toLocaleString()} – PHP {data.salaryMax.toLocaleString()} / year

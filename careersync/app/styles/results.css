@@ -1,17 +1,3 @@
-/* ── SVG icon ───────────────────────────────────────────── */
-.results-section svg {
-    height: 24px;
-    width: 24px;
-}
-
-.results-section svg path {
-    color: var(--primary-btn-bg);
-    fill: currentColor;
-    stroke: var(--primary-btn-border);
-    stroke-width: 1px;
-    vector-effect: non-scaling-stroke;
-}
-
 /* ── Section ────────────────────────────────────────────── */
 .results-section {
     display: flex;
@@ -20,25 +6,16 @@
     flex: 1;
     align-self: stretch;
     gap: 20px;
-    padding: 20px 16px 32px;
-    justify-content: center;
-}
-
-.results-card .confidence {
-    color: var(--primary-btn-border) !important;
-    width: 100%;
-}
-
-@media (min-width: 480px) {
-    .results-section { gap: 28px; padding: 40px 32px 40px; }
+    padding: 20px 16px; /* Reduced for mobile */
+    justify-content: flex-start; /* Better for long content on mobile */
 }
 
 @media (min-width: 768px) {
-    .results-section { gap: 35px; padding: 50px 20px 20px; }
-}
-
-@media (min-width: 1024px) {
-    .results-section { padding: 60px 100px 50px; }
+    .results-section {
+        gap: 35px;
+        padding: 40px;
+        justify-content: center;
+    }
 }
 
 /* ── Cards base ─────────────────────────────────────────── */
@@ -50,41 +27,30 @@
     justify-content: flex-start;
     align-items: flex-start;
     gap: 20px;
-    padding: 25px 20px;
+    padding: 20px;
     background-color: var(--card-bg);
     border: 1px solid var(--card-border);
     box-sizing: border-box;
     width: 100%;
 }
 
-/* mobile only: remove top border on stacked cards */
+/* Stacked border cleanup for mobile */
 .path-card,
 .key-card {
     border-top: none;
 }
 
-@media (min-width: 480px) {
-    .results-card, .key-card, .path-card { padding: 25px 32px; gap: 22px; }
-}
-
 @media (min-width: 768px) {
-    .results-card, .key-card, .path-card { padding: 25px 40px; gap: 25px; }
+    .results-card, .key-card, .path-card {
+        padding: 32px;
+        border-top: 1px solid var(--card-border); /* Restore border on desktop */
+    }
 }
 
 @media (min-width: 1024px) {
     .results-card, .key-card, .path-card {
-        padding: 50px;
-        gap: 25px;
-        justify-content: start;
+        padding: 40px;
     }
-}
-
-/* ── Error state card ────────────────────────────────────── */
-.results-section > .results-card {
-    height: fit-content;
-    align-self: center;
-    flex: none;
-    max-width: 500px;
 }
 
 /* ── Row layout ─────────────────────────────────────────── */
@@ -92,35 +58,27 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    justify-content: center;
+    max-width: 1200px; /* Limit ultra-wide stretch */
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
     .results-row {
         flex-direction: row;
         align-items: stretch;
     }
 
     .results-card {
-        flex: 0 0 500px;
-        width: 500px;
-        border-top: 1px solid var(--card-border);
-        border-left: 1px solid var(--card-border);
+        flex: 1.2; /* Roles get more space */
+        border-right: none;
     }
 
     .path-card {
-        flex: 0 0 auto;
-        width: fit-content;
-        max-width: 400px;
-        border-top: 1px solid var(--card-border);
-        border-left: none;
+        flex: 1;
+        border-right: none;
     }
 
     .key-card {
-        flex: 0 0 auto;
-        width: fit-content;
-        border-top: 1px solid var(--card-border);
-        border-left: none;
+        flex: 1;
     }
 }
 
@@ -128,16 +86,24 @@
 .skill-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 25px;
+    gap: 16px;
     width: 100%;
 }
 
-/* ── Confidence bar ─────────────────────────────────────── */
+@media (min-width: 480px) {
+    .skill-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+}
+
+/* ── Confidence bar (Shared) ────────────────────────────── */
 .confidence-track {
     width: 100%;
     height: 4px;
     background-color: var(--primary-btn-bg);
     overflow: hidden;
+    margin-top: 12px;
 }
 
 .confidence-fill {
@@ -145,109 +111,18 @@
     background-color: var(--primary-btn-border);
 }
 
-/* ── Sub label ──────────────────────────────────────────── */
-.sub-label {
-    color: var(--text-main) !important;
-}
-
-/* ── Submit / retry buttons ─────────────────────────────── */
-.submit-btn, .retry-btn {
+/* ── Buttons ────────────────────────────────────────────── */
+.btn-row {
     display: flex;
-    padding: 8px 16px;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
-    -webkit-tap-highlight-color: transparent;
-}
-
-.submit-btn {
-    background-color: var(--primary-btn-bg);
-    border: 1px solid var(--primary-btn-border);
-    color: var(--primary-btn-txt);
-}
-
-.retry-btn {
-    background-color: var(--secondary-bg);
-    border: 1px solid var(--secondary-border);
-    color: var(--secondary-txt);
-}
-
-@media (min-width: 480px) {
-    .submit-btn, .retry-btn { padding: 9px 20px; }
+    flex-direction: row; /* Keep side-by-side even on small screens */
+    gap: 16px;
+    margin-top: 20px;
 }
 
 @media (min-width: 768px) {
-    .submit-btn, .retry-btn { padding: 10px 25px; }
-}
-
-.submit-btn:hover {
-    background-color: var(--primary-hover-bg);
-    border-color: var(--primary-hover-border);
-    color: var(--primary-hover-txt);
-}
-
-.submit-btn:active {
-    background-color: var(--primary-active-bg);
-    border-color: var(--primary-active-border);
-    color: var(--primary-active-txt);
-}
-
-.retry-btn:hover {
-    background-color: var(--secondary-hover-bg);
-    border-color: var(--secondary-hover-border);
-    color: var(--secondary-hover-txt);
-}
-
-.retry-btn:active {
-    background-color: var(--secondary-active-bg);
-    border-color: var(--secondary-active-border);
-    color: var(--secondary-active-txt);
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .submit-btn, .retry-btn { transition: none; }
-}
-
-/* ── Loading bar ────────────────────────────────────────── */
-.loading-grp {
-    display: flex;
-    flex-direction: column;
-    gap: 50px;
-    width: 100%;
-    max-width: 450px;
-}
-
-.loading-label { text-align: center; }
-
-.loading-bar-track {
-    width: 100%;
-    height: 8px;
-    background-color: var(--primary-btn-bg);
-    overflow: hidden;
-}
-
-.loading-bar-fill {
-    height: 100%;
-    width: 30%;
-    background-color: var(--primary-btn-border);
-    animation: loading-sweep 0.9s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-}
-
-@keyframes loading-sweep {
-    0%   { transform: translateX(-200%); }
-    100% { transform: translateX(400%); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .loading-bar-fill { animation: none; width: 100%; opacity: 0.4; }
-}
-
-/* ── Button row ─────────────────────────────────────────── */
-.btn-row {
-    display: flex;
-    flex-direction: row;
-    gap: 50px;
+    .btn-row {
+        gap: 32px;
+    }
 }
 
 @media print {

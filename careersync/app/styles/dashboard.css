@@ -15,26 +15,27 @@
     align-items: center;
     flex: 1;
     row-gap: 20px;
-    padding: 16px 32px;
+    padding: 20px 16px 32px;
 }
 
 @media (min-width: 480px) {
     .dashboard-section {
         row-gap: 28px;
-        padding: 32px 40px;
+        padding: 40px 32px 40px;
     }
 }
 
 @media (min-width: 768px) {
     .dashboard-section {
         row-gap: 35px;
-        padding: 20px;
+        padding: 35px 20px 20px;
     }
 }
 
 @media (min-width: 1024px) {
     .dashboard-section {
-        padding: 50px;
+        row-gap: 25px;
+        padding: 25px;
     }
 }
 
@@ -42,7 +43,8 @@
 .stat-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 12px;
+    gap: 20px;
+    /* Matched to mobile row-gap */
     width: 100%;
 }
 
@@ -50,6 +52,14 @@
     .stat-row {
         grid-template-columns: repeat(4, 1fr);
         gap: 35px;
+        /* Matched to 768px row-gap */
+    }
+}
+
+@media (min-width: 1024px) {
+    .stat-row {
+        gap: 25px;
+        /* Matched to desktop row-gap */
     }
 }
 
@@ -67,7 +77,8 @@
 .analytics-row {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 12px;
+    gap: 20px;
+    /* Matched to mobile row-gap */
     width: 100%;
 }
 
@@ -75,6 +86,14 @@
     .analytics-row {
         grid-template-columns: 1fr 1fr;
         gap: 35px;
+        /* Matched to 768px row-gap */
+    }
+}
+
+@media (min-width: 1024px) {
+    .analytics-row {
+        gap: 25px;
+        /* Matched to desktop row-gap */
     }
 }
 
@@ -83,15 +102,181 @@
     background-color: var(--card-bg);
     border: 1px solid var(--card-border);
     padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
-/* History card */
 .history-card {
     width: 100%;
     min-height: 280px;
     background-color: var(--card-bg);
     border: 1px solid var(--card-border);
     padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.scroll-container {
+    max-height: 250px;
+    /* Adjusted for roughly 5 items */
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.table-wrapper {
+    width: 100%;
+    /* max-height: 300px; removed as tbody handles it now */
+}
+
+/* Row-based list item */
+.list-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-bottom: 12px;
+    /* border-bottom: 1px solid var(--card-border); */
+}
+
+.list-item:last-child {
+    border-bottom: none;
+}
+
+/* Confidence Bar (shared from results) */
+.confidence-track {
+    width: 100%;
+    height: 4px;
+    background-color: var(--primary-btn-bg);
+    overflow: hidden;
+}
+
+.confidence-fill {
+    height: 100%;
+    background-color: var(--primary-btn-border);
+}
+
+/* ── History Table ─────────────────────────────────────── */
+.history-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    border: 1px solid var(--card-border);
+    table-layout: fixed;
+}
+
+.history-table thead {
+    display: table;
+    width: calc(100% - 0px);
+    /* Account for potential scrollbar */
+}
+
+.history-table tbody {
+    display: block;
+    max-height: 250px;
+    /* Roughly 5 rows */
+    overflow-y: auto;
+    width: 100%;
+}
+
+.history-table tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.history-table th {
+    text-align: left;
+    padding: 12px 8px;
+    border-bottom: 1px solid var(--card-border);
+    color: var(--text-main);
+    background-color: var(--card-bg);
+}
+
+/* Specific column widths for alignment */
+.history-table th:nth-child(1),
+.history-table td:nth-child(1) {
+    width: 50%;
+}
+
+.history-table th:nth-child(2),
+.history-table td:nth-child(2) {
+    width: 25%;
+}
+
+.history-table th:nth-child(3),
+.history-table td:nth-child(3) {
+    width: 25%;
+}
+
+.history-table td {
+    padding: 12px 8px;
+    border-bottom: 1px solid var(--card-border);
+    vertical-align: middle;
+}
+
+.history-table tr:last-child td {
+    border-bottom: none;
+}
+
+.action-grp {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+}
+
+.action-btn {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 0.9rem;
+    padding: 4px 8px;
+    transition: opacity 0.15s ease;
+}
+
+.action-btn:hover {
+    opacity: 0.7;
+}
+
+.view-btn {
+    background: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+}
+
+.view-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+.view-btn svg path {
+    color: var(--text-main);
+    fill: currentColor;
+}
+
+.delete-btn {
+    color: var(--danger-btn-border);
+    background: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+}
+
+.delete-btn svg {
+    width: 24px;
+    height: 24px;
+}
+
+.delete-btn svg path {
+    color: var(--danger-btn-border);
+    stroke: currentColor;
 }
 
 @media (min-width: 480px) {

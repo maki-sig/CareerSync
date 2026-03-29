@@ -31,7 +31,7 @@ Given my student profile, analyze my strengths and respond ONLY with a single va
 
 JSON structure (all fields required):
 {
-  "role": "string — specific job title (e.g. 'a Full-Stack Developer', 'an AI/ML Engineer')",
+  "role": "string — specific job title (e.g. 'Full-Stack Developer', 'AI/ML Engineer')",
   "summary": "string — 1 clear sentence describing what this role does day-to-day",
   "reason": "string — 1 clear very short sentence of why I fit the role",
   "confidence": number — integer 0–100 representing how well my profile matches this role,

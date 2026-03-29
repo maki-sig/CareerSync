@@ -1,18 +1,31 @@
-/* ── Head group ─────────────────────────────────────────── */
+/* ── Root Layout ────────────────────────────────────────── */
+.dashboard-root {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.dashboard-main-container {
+    display: flex;
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+}
+
 .head-grp {
     display: flex;
     flex-direction: column;
     width: 100%;
     height: fit-content;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+    z-index: 2000; /* Higher than sidebar to avoid covering progress bar */
 }
 
 /* ── Nav bar ────────────────────────────────────────────── */
 .nav-bar {
     /* layout */
     width: 100%;
+    height: 48px; /* Fixed mobile height */
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -40,6 +53,7 @@
 
 @media (min-width: 1024px) {
     .nav-bar {
+        height: 64px; /* Fixed desktop height */
         padding: 10px;
     }
 }
@@ -117,7 +131,7 @@
 }
 
 .progress-bar-fill {
-    height: 1.5px;
+    height: 1px;
     background-color: var(--primary-btn-border);
     transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -125,24 +139,90 @@
 /* ── Sidebar ────────────────────────────────────────────── */
 .side-bar {
     width: 250px;
-    height: calc(100vh - 64px);
-    /* Updated for snugness */
-    position: fixed;
-    top: 64px;
+    height: 100%; /* Relative to main-container */
+    position: absolute; /* Changed to absolute within relative container */
+    top: 0;
     left: 0;
-    z-index: 500;
-    /* Ensure it's behind navbar (1000) but above content */
-    flex-shrink: 0;
-
+    z-index: 1000;
+    background-color: var(--card-bg);
+    border-right: 1px solid var(--card-border);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     gap: 32px;
     padding: 25px;
-
-    background-color: var(--card-bg);
-    border-right: 1px solid var(--card-border);
     overflow-y: auto;
+    
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.side-bar.is-open {
+    transform: translateX(0);
+}
+
+@media (min-width: 1024px) {
+    .side-bar {
+        transform: translateX(0);
+    }
+}
+
+/* ── Overlay ────────────────────────────────────────────── */
+.sidebar-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 900;
+}
+
+.sidebar-overlay.is-active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+@media (min-width: 1024px) {
+    .sidebar-overlay {
+        display: none;
+    }
+}
+
+/* ── Dashboard Content Offset ──────────────────────────── */
+.dashboard-content {
+    flex: 1;
+    height: 100%;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+
+@media (min-width: 1024px) {
+    .dashboard-content {
+        margin-left: 250px;
+    }
+}
+
+/* ── Menu Buttons (Hamburger) ───────────────────────────── */
+.menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    color: var(--text-main);
+}
+
+@media (min-width: 1024px) {
+    .menu-toggle {
+        display: none;
+    }
 }
 
 .side-bar-top {
@@ -153,20 +233,6 @@
 
 .logout-btn {
     margin-top: auto;
-}
-
-@media (min-width: 480px) {
-    .side-bar {
-        top: 64px;
-        height: calc(100vh - 64px);
-    }
-}
-
-@media (min-width: 768px) {
-    .side-bar {
-        top: 64px;
-        height: calc(100vh - 64px);
-    }
 }
 
 .side-bar span {
