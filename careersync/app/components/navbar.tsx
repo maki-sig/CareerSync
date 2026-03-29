@@ -50,7 +50,7 @@ export default function Navbar({ progress = 0 }: NavbarProps) {
     }
 
     return (
-        <div className="head-grp">
+        <div className={`head-grp ${isRootPage ? "fixed-nav" : ""}`}>
             <div className="nav-bar">
                 <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
                     {/* Hide Menu Button if at root or portal on mobile */}
