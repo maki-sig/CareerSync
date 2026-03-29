@@ -15,6 +15,13 @@ body {
     background-color: var(--main-bg);
 }
 
+/* ── Prevent mobile auto-zoom on focus ──────────────────── */
+input, 
+textarea, 
+select {
+    font-size: 16px !important;
+}
+
 /* ── Scrollbar ──────────────────────────────────────────── */
 * {
     scrollbar-width: thin;

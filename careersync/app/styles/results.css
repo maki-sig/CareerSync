@@ -1,18 +1,28 @@
-.results-section {
+.results-section,
+.loading-section {
     display: flex;
     flex-direction: column;
     align-items: center;
     flex: 1;
     align-self: stretch;
     gap: 20px;
-    padding: 20px 16px; /* Standardize 16px mobile side padding */
-    justify-content: flex-start; /* Better for long content on mobile */
+    padding: 20px 16px 32px;
+    /* Synchronized with forms bottom padding (32px) */
+    justify-content: flex-start;
+    /* Better for long content on mobile */
+}
+
+.loading-section {
+    height: 100%;
+    justify-content: center; /* Center syncing animation vertically */
 }
 
 @media (min-width: 768px) {
     .results-section {
-        gap: 40px; /* Matched to padding */
-        padding: 40px 32px; /* Standardize 32px desktop side padding */
+        gap: 40px;
+        /* Matched to padding */
+        padding: 40px 32px 32px;
+        /* Synchronized with forms desktop padding */
         justify-content: center;
     }
 }
@@ -40,14 +50,21 @@
 }
 
 @media (min-width: 768px) {
-    .results-card, .key-card, .path-card {
+
+    .results-card,
+    .key-card,
+    .path-card {
         padding: 32px;
-        border-top: 1px solid var(--card-border); /* Restore border on desktop */
+        border-top: 1px solid var(--card-border);
+        /* Restore border on desktop */
     }
 }
 
 @media (min-width: 1024px) {
-    .results-card, .key-card, .path-card {
+
+    .results-card,
+    .key-card,
+    .path-card {
         padding: 40px;
     }
 }
@@ -57,7 +74,8 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: 1200px; /* Limit ultra-wide stretch */
+    max-width: 1200px;
+    /* Limit ultra-wide stretch */
 }
 
 @media (min-width: 1024px) {
@@ -67,7 +85,8 @@
     }
 
     .results-card {
-        flex: 1.2; /* Roles get more space */
+        flex: 1.2;
+        /* Roles get more space */
         border-right: none;
     }
 
@@ -113,9 +132,10 @@
 /* ── Buttons ────────────────────────────────────────────── */
 .btn-row {
     display: flex;
-    flex-direction: row; /* Keep side-by-side even on small screens */
-    gap: 16px;
-    /* margin-top removed to rely on section gap */
+    flex-direction: row;
+    /* Keep side-by-side even on small screens */
+    gap: 50px;
+    /* Synchronized with back/next forms group */
 }
 
 .submit-btn svg path {
@@ -128,15 +148,53 @@
     fill: currentColor;
 }
 
-@media (min-width: 768px) {
-    .btn-row {
-        gap: 32px;
+/* ── Loading Animation ──────────────────────────────────── */
+.loading-grp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    max-width: 200px;
+}
+
+.loading-bar-track {
+    width: 100%;
+    height: 2px;
+    background-color: var(--card-border);
+    overflow: hidden;
+    position: relative;
+}
+
+.loading-bar-fill {
+    position: absolute;
+    width: 40%;
+    height: 100%;
+    background-color: var(--primary-btn-border);
+    animation: loading-slide 1.2s infinite ease-in-out;
+}
+
+@keyframes loading-slide {
+    0% {
+        left: -40%;
+    }
+
+    50% {
+        left: 40%;
+    }
+
+    100% {
+        left: 100%;
     }
 }
 
+
+
+
 @media print {
+
     .btn-row,
-    .results-section > svg,
+    .results-section>svg,
     header,
     nav,
     .nav-bar,
@@ -151,10 +209,10 @@
         border: none !important;
     }
 
-    body, 
-    .dashboard-root, 
-    .dashboard-main-container, 
-    .dashboard-content, 
+    body,
+    .dashboard-root,
+    .dashboard-main-container,
+    .dashboard-content,
     .results-section {
         background-color: #fff !important;
         color: #000 !important;
@@ -165,14 +223,16 @@
     }
 
     .results-section {
-        padding-top: 50px !important; /* Move contents down */
+        padding-top: 50px !important;
+        /* Move contents down */
     }
 
     .results-card,
     .path-card,
     .key-card {
         border: none !important;
-        border-bottom: 1px solid #ddd !important; /* Divider line */
+        border-bottom: 1px solid #ddd !important;
+        /* Divider line */
         background-color: transparent !important;
         padding: 0 0 20px 0 !important;
         margin-bottom: 30px !important;

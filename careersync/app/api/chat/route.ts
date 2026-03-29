@@ -36,7 +36,7 @@ JSON structure (all fields required):
   "reason": "string — 1 clear very short sentence of why I fit the role",
   "confidence": number — integer 0–100 representing how well my profile matches this role,
   "keySkills": ["string"] — exactly 6 skills the student should develop: 4 specific technical skills (tools, languages, frameworks) and 2 relevant soft skills for this role,
-  "careerPath": ["string"] — exactly 4 very short, actionable steps a student should take to break into this role (e.g. 'Build 2–3 portfolio projects using React and Node.js', 'Get an internship at a local startup or BPO tech team', 'Earn a relevant certification like AWS Cloud Practitioner'). These are practical to-do steps, not job titles.
+  "careerPath": ["string"] — exactly 5 very short, actionable steps a student should take to break into this role (e.g. 'Build 2–3 portfolio projects using React and Node.js', 'Get an internship at a local startup or BPO tech team', 'Earn a relevant certification like AWS Cloud Practitioner'). These are practical to-do steps, not job titles.
   "salaryMin": number — estimated entry-level annual salary in PHP (realistic PH market rate, integer),
   "salaryMax": number — estimated mid-level annual salary in PHP (realistic PH market rate, integer)
 }

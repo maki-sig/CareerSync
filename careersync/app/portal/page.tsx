@@ -135,7 +135,7 @@ export function LoginForm({ onSwitch }: { onSwitch: () => void }) {
     return (
         <>
             <h1 className="title-txt">Login</h1>
-            <form className="login-signup-card" onSubmit={handleSubmit}>
+            <form className="login-signup-card" onSubmit={handleSubmit} suppressHydrationWarning>
                 <div className="input-wrapper option-txt">
                     <input
                         type="text"
@@ -144,6 +144,7 @@ export function LoginForm({ onSwitch }: { onSwitch: () => void }) {
                         placeholder=" "
                         className="option-txt"
                         required
+                        suppressHydrationWarning
                     />
                     <label htmlFor="login-username">Username</label>
                 </div>
@@ -155,6 +156,7 @@ export function LoginForm({ onSwitch }: { onSwitch: () => void }) {
                         placeholder=" "
                         className="option-txt"
                         required
+                        suppressHydrationWarning
                     />
                     <label htmlFor="login-password">Password</label>
                     <button
@@ -260,7 +262,7 @@ export function SignupForm({ onSwitch }: { onSwitch: () => void }) {
     return (
         <>
             <h1 className="title-txt">Create Account</h1>
-            <form className="login-signup-card" onSubmit={handleSubmit}>
+            <form className="login-signup-card" onSubmit={handleSubmit} suppressHydrationWarning>
                 <div className="input-wrapper option-txt">
                     <input
                         type="text"
@@ -269,6 +271,7 @@ export function SignupForm({ onSwitch }: { onSwitch: () => void }) {
                         placeholder=" "
                         className="option-txt"
                         required
+                        suppressHydrationWarning
                     />
                     <label htmlFor="signup-username">Username</label>
                 </div>
@@ -280,6 +283,7 @@ export function SignupForm({ onSwitch }: { onSwitch: () => void }) {
                         placeholder=" "
                         className="option-txt"
                         required
+                        suppressHydrationWarning
                     />
                     <label htmlFor="signup-password">Password</label>
                     <button
@@ -299,6 +303,7 @@ export function SignupForm({ onSwitch }: { onSwitch: () => void }) {
                         placeholder=" "
                         className="option-txt"
                         required
+                        suppressHydrationWarning
                     />
                     <label htmlFor="confirm-password">Confirm Password</label>
                     <button

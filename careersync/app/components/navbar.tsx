@@ -49,6 +49,7 @@ export default function Navbar({ progress = 0 }: NavbarProps) {
                         <MenuIcon />
                     </button>
                     <Spark />
+                    <span className="option-txt">CareerSync</span>
                 </div>
                 
                 <div style={{ display: "flex", alignItems: "center", gap: "15px" }}>

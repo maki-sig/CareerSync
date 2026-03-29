@@ -1,14 +1,19 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { useRouter } from "next/navigation"
+import { useRouter, usePathname } from "next/navigation"
 import { useDashboard } from "../dashboard/layout"
 import { createClient } from "@/utils/supabase/client"
 import "../styles/nav.css"
 
 export default function Sidebar() {
     const router = useRouter()
+    const pathname = usePathname()
     const { sidebarOpen, setSidebarOpen } = useDashboard()
+    
+    // Active state checks
+    const isDashboard = pathname === "/dashboard"
+    const isForms = pathname === "/dashboard/forms" || pathname?.startsWith("/dashboard/forms/")
     const [username, setUsername] = useState<string>("User")
 
     useEffect(() => {
@@ -68,12 +73,16 @@ export default function Sidebar() {
                 <button 
                     className="submit-btn btn-txt" 
                     onClick={() => navigate("/dashboard/forms")}
+                    disabled={isForms}
+                    style={{ opacity: isForms ? 0.5 : 1, cursor: isForms ? "default" : "pointer" }}
                 >
                     Sync with a Career
                 </button>
                 <button 
                     className="secondary-btn btn-txt" 
                     onClick={() => navigate("/dashboard")}
+                    disabled={isDashboard}
+                    style={{ opacity: isDashboard ? 0.5 : 1, cursor: isDashboard ? "default" : "pointer" }}
                 >
                     Dashboard
                 </button>
