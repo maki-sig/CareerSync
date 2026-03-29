@@ -1,3 +1,14 @@
+.dashboard-main {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    margin: 0;
+    gap: 0;
+    padding: 0;
+}
+
 .dashboard-section {
     display: flex;
     flex-direction: column;
@@ -5,26 +16,26 @@
     flex: 1;
     margin: 0;
     row-gap: 20px;
-    padding: 0 16px 32px;
+    padding: 16px 32px;
 }
 
 @media (min-width: 480px) {
     .dashboard-section {
         row-gap: 28px;
-        padding: 0 32px 40px;
+        padding: 32px 40px;
     }
 }
 
 @media (min-width: 768px) {
     .dashboard-section {
         row-gap: 35px;
-        padding: 0 20px 20px;
+        padding: 20px;
     }
 }
 
 @media (min-width: 1024px) {
     .dashboard-section {
-        padding: 0 100px 50px;
+        padding: 50px;
     }
 }
 
@@ -48,6 +59,9 @@
     background-color: var(--card-bg);
     border: 1px solid var(--card-border);
     padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
 }
 
 /* Analytics row */
