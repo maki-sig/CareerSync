@@ -22,12 +22,12 @@ export default function LandingClient() {
                     <div className="hero-bg" />
 
                     <h1>
-                        Your career match,<br />
+                        Your tech-career match,<br />
                         <span>quantified.</span>
                     </h1>
 
                     <p className="hero-sub">
-                        Answer a short quiz → Get ai-driven career paths<br />
+                        Answer a short quiz → Get ai-driven tech-career paths<br />
                         with confidence scores, fit explanations &amp; salary data.
                     </p>
 
@@ -55,7 +55,7 @@ export default function LandingClient() {
                             </div>
                             <div className="hfeat-text">
                                 <span className="hfeat-val">AI-powered</span>
-                                <span className="hfeat-label">career matching</span>
+                                <span className="hfeat-label">Career matching</span>
                             </div>
                         </div>
 
@@ -71,7 +71,7 @@ export default function LandingClient() {
                             </div>
                             <div className="hfeat-text">
                                 <span className="hfeat-val">PH salary data</span>
-                                <span className="hfeat-label">local insights</span>
+                                <span className="hfeat-label">Local insights</span>
                             </div>
                         </div>
 
@@ -86,7 +86,7 @@ export default function LandingClient() {
                             </div>
                             <div className="hfeat-text">
                                 <span className="hfeat-val">Confidence scores</span>
-                                <span className="hfeat-label">per career match</span>
+                                <span className="hfeat-label">Per career match</span>
                             </div>
                         </div>
 
@@ -99,7 +99,7 @@ export default function LandingClient() {
                             </div>
                             <div className="hfeat-text">
                                 <span className="hfeat-val">Re-sync anytime</span>
-                                <span className="hfeat-label">unlimited retakes</span>
+                                <span className="hfeat-label">20 times a day</span>
                             </div>
                         </div>
 
@@ -114,7 +114,7 @@ export default function LandingClient() {
                             </div>
                             <div className="hfeat-text">
                                 <span className="hfeat-val">Fit explanations</span>
-                                <span className="hfeat-label">plain-language reasons</span>
+                                <span className="hfeat-label">Plain-language reasons</span>
                             </div>
                         </div>
 
@@ -148,7 +148,7 @@ export default function LandingClient() {
                                 </div>
                                 <h3 className="fstep-title">Answer the quiz</h3>
                                 <p className="fstep-body">
-                                    A focused set of questions about your skills, interests, and learning style. No fluff — every question feeds the model.
+                                    A focused set of questions about your skills, interests, and learning style. No fluff, every question feeds the model.
                                 </p>
                                 <div className="fstep-tag">~3 min</div>
                             </div>
@@ -169,7 +169,7 @@ export default function LandingClient() {
                                 <p className="fstep-body">
                                     CareerSync runs your profile against dozens of career blueprints, scoring each one for fit with a confidence percentage.
                                 </p>
-                                <div className="fstep-tag">instant</div>
+                                <div className="fstep-tag">Instant</div>
                             </div>
 
                             <div className="fstep-connector" aria-hidden="true">
@@ -186,7 +186,7 @@ export default function LandingClient() {
                                 </div>
                                 <h3 className="fstep-title">Get your breakdown</h3>
                                 <p className="fstep-body">
-                                    View ranked roles, fit explanations, and Philippine salary ranges — saved to your dashboard so you can re-sync anytime.
+                                    View ranked roles, fit explanations, and Philippine salary ranges. Recommendations saved to your dashboard so you can re-sync anytime.
                                 </p>
                                 <div className="fstep-tag">PH salary data</div>
                             </div>
